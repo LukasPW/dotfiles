@@ -5,11 +5,8 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+    background-color: transparent;
+  border: none;
 }
 
 window#waybar.hidden {
@@ -274,11 +271,12 @@ label:focus {
 }
 
 #language {
-    background: #00b093;
-    color: #740864;
+    background: #340763 ;
+    color: #f8e590;
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
+    border-radius: 3% 20%;
 }
 
 #keyboard-state {
