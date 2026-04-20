@@ -125,7 +125,6 @@ WINDOW TITLE
 ===================================================== */
 
 #window {
-background-color: rgba(52, 7, 99, 0.8);
 color: #f8e590;
 padding: 5px;
 }
@@ -135,7 +134,6 @@ MODE
 ===================================================== */
 
 #mode {
-background-color: #64727D;
 box-shadow: inset 0 -3px #ffffff;
 }
 
@@ -152,19 +150,16 @@ BATTERY
 ===================================================== */
 
 #battery {
-background-color: #ffffff;
-color: #000000;
+font-weight: 500;
 }
 
 #battery.charging,
 #battery.plugged {
-color: #ffffff;
-background-color: #26A65B;
+color: #26A65B;
 }
 
 #battery.critical:not(.charging) {
-background-color: #f53c3c;
-color: #ffffff;
+color: #f53c3c;
 
 animation-name: blink;
 animation-duration: 0.5s;
@@ -176,17 +171,17 @@ animation-direction: alternate;
 /* =====================================================
 HARDWARE / NETWORK
 ===================================================== */
-
+/*
 #backlight {
-background-color: #011755;
-}
 
+}
+*/
 #network {
-background-color: #45d2fb;
+color: #45d2fb;
 }
 
 #network.disconnected {
-background-color: #f53c3c;
+color: #f53c3c;
 }
 
 /* =====================================================
@@ -194,16 +189,15 @@ AUDIO
 ===================================================== */
 
 #pulseaudio {
-background-color: #f1c40f;
 color: #000000;
 }
-
+/*
 #pulseaudio:hover {
-background-color: #a37800;
-}
 
+}
+*/
 #pulseaudio.muted {
-background-color: #90b1b1;
+
 color: #2a5c45;
 }
 
@@ -241,11 +235,11 @@ background-color: #ffa000;
 /* =====================================================
 TRAY
 ===================================================== */
-
+/*
 #tray {
-background-color: #2980b9;
-}
 
+}
+*/
 #tray > .passive {
 -gtk-icon-effect: dim;
 }
@@ -258,16 +252,15 @@ background-color: #eb4d4b;
 /* =====================================================
 IDLE / SCRATCHPAD
 ===================================================== */
-
+/*
 #idle_inhibitor {
-background-color: #2d3436;
+
 }
 
 #idle_inhibitor.activated {
-background-color: #ecf0f1;
-color: #2d3436;
-}
 
+}
+*/
 #scratchpad {
 background: rgba(0, 0, 0, 0.2);
 }
