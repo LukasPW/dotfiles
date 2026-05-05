@@ -92,32 +92,29 @@ margin: 0 8px;
 }
 
 #workspaces button {
-padding: 4px 12px;
-margin: 0 4px;
-border-radius: 999px;
-
-
-background: rgba(30, 20, 60, 0.35);
-color: rgba(248, 229, 144, 0.6);
-
-transition: all 0.25s ease;
-
+  padding: 8px 6px;
+  margin: 4px 4px;
+  border-radius: 999px;
+  background: rgba(30, 20, 60, 0.5);
+  color: rgba(248, 229, 144, 0.6);
+  transition: all 0.25s ease;
+  min-width: 28px;
 
 }
-
+#workspaces button label {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
 #workspaces button:hover {
-background: rgba(60, 40, 100, 0.5);
-color: rgba(248, 229, 144, 0.85);
+  background: rgba(60, 40, 100, 0.5);
+  color: rgba(248, 229, 144, 0.85);
 }
 
 #workspaces button.active {
-background: rgba(52, 7, 99, 0.7);
-color: #f8e590;
-
-
-box-shadow: 
-    0 0 6px rgba(248, 229, 144, 0.4),
-    0 0 12px rgba(52, 7, 99, 0.6);
+    background: #007caf;
+    padding: 4px 20px; /* wider padding = expanded pill */
+    box-shadow: none; /* remove the current glow if you want a cleaner look */
 }
 
 /* =====================================================
