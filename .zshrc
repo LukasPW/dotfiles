@@ -1,4 +1,5 @@
 # Lines configured by zsh-newuser-install
+export EDITOR=nvim
 HISTFILE=~/.histfile
 HISTSIZE=100
 SAVEHIST=100
