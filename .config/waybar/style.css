@@ -6,7 +6,7 @@ GLOBAL / BASE
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: FontAwesome, JetBrainsMono Nerd Font Propo, Helvetica, Arial, sans-serif;
   font-size: 13px;
-
+  background-color: transparent ;
   min-height: 0;
   margin: 0;
   padding: 0;
@@ -38,7 +38,7 @@ box-shadow: inset 0 -3px #ffffff;
 }
 
 label:focus {
-background-color: #000000;
+background-color: #000;
 }
 
 /* =====================================================
@@ -152,7 +152,7 @@ font-weight: 500;
 
 #battery.charging,
 #battery.plugged {
-color: #26A65B;
+color: #a08ce1;
 }
 
 #battery.critical:not(.charging) {
