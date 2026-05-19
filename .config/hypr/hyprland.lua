@@ -249,6 +249,12 @@ hl.gesture({
 hl.device({
 	name = "epic-mouse-v1",
 	sensitivity = -0.5,
+	disable_while_typing = false,
+})
+hl.device({
+	name = "syna2ba6:00-06cb:ce2d-touchpad",
+	sensitivity = 0,
+	disable_while_typing = false,
 })
 
 ---------------------
