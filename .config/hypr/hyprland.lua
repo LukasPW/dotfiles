@@ -176,7 +176,7 @@ hl.config({
 		follow_mouse = 1,
 
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
+		accel_profile = "flat",
 		touchpad = {
 			natural_scroll = false,
 		},
@@ -254,7 +254,9 @@ hl.device({
 hl.device({
 	name = "syna2ba6:00-06cb:ce2d-touchpad",
 	sensitivity = 0,
-	disable_while_typing = false,
+	disable_while_typing = true,
+	scroll_method = "2fg",
+	scroll_factor = 0.3,
 })
 
 ---------------------
