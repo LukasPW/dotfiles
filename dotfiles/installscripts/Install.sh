@@ -1,8 +1,6 @@
 #!/bin/bash
 
 set -euxo pipefail
-
-Target_DOTFILES="https://github.com/LukasPW/dotfiles.git"
 #------------------
 #Global Variables
 #------------------
@@ -14,30 +12,53 @@ DISTRO=""
 GPU=""
 CPU=""
 
-if [[ "$EUID" != 0 ]]; then
-  echo "Not running as root"
-  exit 1
-fi
-
-pinstall() {
-  echo "Running install logic"
-  pacman -S --needed - <packages.txt
-}
-
-uninstall() {
-  echo "Running uninstall logic"
-  pacman -R - <packages.txt
-}
-
+#----------------------
+# Calling Child Scripts
+# ---------------------
+source "$(dirname "${BASH_SOURCE[0]}")/libs/sysCheck.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/libs/mainProcesses.sh"
+source "$(dirname "${BASH_SOURCE[=]}")/libs/helpers.sh"
+#--------------
+# Main function
+# -------------
 main() {
-  case "${1:-}" in
-  --install) pinstall ;;
-  --uninstall) uninstall ;;
-  *)
-    echo "Usage: $0 [--install|--uninstall]"
-    exit 1
-    ;;
+   [[ "$EUID" == 0]] || die "Run with sudo: sudo $0 [--install|--uninstall] [--personal]"
+   [[ -n "$REAL_USER" && "$REAL_USER" != "root" ]] \
+      || die "Could not determin the real user. Run with sudo from your user account, not as root"
+  
+  #Parsing Flags
+  local action=""
+  for arg in "$@"; do
+      case "$arg" in
+          --install) action="install" ;;
+          --uninstall) action="uninstall" ;;
+          --personal) PERSONAL=true ;;
+          *)
+              die "Unknown argument: $arg\nUsage: sudo $0 [--install|--uninstall] [--personal]"
+              ;;
+      esac
+  done
+
+  # Detect environment
+  DISTRO=$(distroCheck)
+  GPU=$(gpuCheck)
+  CPU=$(cpuCheck)
+
+  case "$action" in
+      install) runInstall ;;
+      uninstall) runUninstall ;;
+      "")
+          #No flag, falls back to core install
+          echo ""
+          echo " Package installer"
+          echo " Detected: $DISTRO | GPU: $GPU | CPU: $CPU"
+          echo ""
+          read -rp " install packages? (y/N): " answer
+          [[ "$answer" =~ ^[Yy]$ ]] || {log "Aborted."; exit 0;}
+          runInstall
+          ;;
   esac
 }
+
 
 main "$@"
