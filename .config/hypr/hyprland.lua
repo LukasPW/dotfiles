@@ -51,7 +51,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("blueman-applet")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd("awww img ~/Pictures/wallpapers/COTNtest.jpg")
+	hl.exec_cmd("awww img" .. os.getenv("HOME") .. "/Pictures/wallpapers/Minimalist_Mountain.jpg")
 end)
 
 -------------------------------

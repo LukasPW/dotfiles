@@ -2,6 +2,18 @@
 
 set -euxo pipefail
 
+Target_DOTFILES="https://github.com/LukasPW/dotfiles.git"
+#------------------
+#Global Variables
+#------------------
+REAL_USER="${SUDO_USER:-$USER}"
+REAL_HOME=$(getent passwd "$REAL_USER" | cut -d: -f6)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PERSONAL=false
+DISTRO=""
+GPU=""
+CPU=""
+
 if [[ "$EUID" != 0 ]]; then
   echo "Not running as root"
   exit 1
