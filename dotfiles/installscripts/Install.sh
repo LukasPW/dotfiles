@@ -15,14 +15,14 @@ CPU=""
 #----------------------
 # Calling Child Scripts
 # ---------------------
+source "$(dirname "${BASH_SOURCE[0]}")/libs/helpers.sh"
 source "$(dirname "${BASH_SOURCE[0]}")/libs/sysCheck.sh"
 source "$(dirname "${BASH_SOURCE[0]}")/libs/mainProcesses.sh"
-source "$(dirname "${BASH_SOURCE[=]}")/libs/helpers.sh"
 #--------------
 # Main function
 # -------------
 main() {
-   [[ "$EUID" == 0]] || die "Run with sudo: sudo $0 [--install|--uninstall] [--personal]"
+   [[ "$EUID" == 0 ]] || die "Run with sudo: sudo $0 [--install|--uninstall] [--personal]"
    [[ -n "$REAL_USER" && "$REAL_USER" != "root" ]] \
       || die "Could not determin the real user. Run with sudo from your user account, not as root"
   
