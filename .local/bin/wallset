@@ -1,0 +1,10 @@
+#!/bin/bash
+
+img="${1:-$(fd . ~/Pictures/wallpapers | fzf)}"
+
+[ -z "$img" ] && exit 1
+
+awww img "$img"
+matugen image "$img"
+hyprctl reload
+killall -SIGUSR2 waybar

@@ -1,7 +1,7 @@
 /* =====================================================
 GLOBAL / BASE
 ===================================================== */
-
+@import url("colors.css");
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: FontAwesome, JetBrainsMono Nerd Font Propo, Helvetica, Arial, sans-serif;
@@ -10,12 +10,11 @@ GLOBAL / BASE
   min-height: 0;
   margin: 0;
   padding: 0;
-  }
+}
 
 window#waybar {
 background-color: transparent;
-border: none;
-color: rgb(231, 176, 123);
+border: @tertiary;
 }
 
 window#waybar.hidden {
@@ -64,6 +63,7 @@ MODULE DEFAULTS
 #power-profiles-daemon,
 #mpd {
 padding: 0 10px;
+color: @surface_tint;
 }
 
 #window,
@@ -95,8 +95,7 @@ margin: 0 8px;
   padding: 8px 6px;
   margin: 4px 4px;
   border-radius: 999px;
-  background: rgba(30, 20, 60, 0.5);
-  color: rgba(248, 229, 144, 0.6);
+  background: @background;
   transition: all 0.25s ease;
   min-width: 28px;
 
@@ -107,12 +106,13 @@ margin: 0 8px;
     min-width: 0;
 }
 #workspaces button:hover {
-  background: rgba(60, 40, 100, 0.5);
-  color: rgba(248, 229, 144, 0.85);
+  background: @surface_tint;
+  color: @background;
 }
 
 #workspaces button.active {
-    background: #007caf;
+    background: @on_primary;
+    color: @primary;
     padding: 4px 20px; /* wider padding = expanded pill */
     box-shadow: none; /* remove the current glow if you want a cleaner look */
 }
@@ -122,7 +122,7 @@ WINDOW TITLE
 ===================================================== */
 
 #window {
-color: #f8e590;
+color: @on_primary;
 padding: 5px;
 }
 
@@ -152,11 +152,11 @@ font-weight: 500;
 
 #battery.charging,
 #battery.plugged {
-color: #a08ce1;
+color: @surface_tint;
 }
 
 #battery.critical:not(.charging) {
-color: #f53c3c;
+color: @error;
 
 animation-name: blink;
 animation-duration: 0.5s;
@@ -174,11 +174,11 @@ HARDWARE / NETWORK
 }
 */
 #network {
-color: #45d2fb;
+color: @secondary;
 }
 
 #network.disconnected {
-color: #f53c3c;
+color: @error_container;
 }
 
 /* =====================================================
@@ -186,7 +186,7 @@ AUDIO
 ===================================================== */
 
 #pulseaudio {
-color: #000000;
+color: @tertiary;
 }
 /*
 #pulseaudio:hover {
@@ -195,20 +195,20 @@ color: #000000;
 */
 #pulseaudio.muted {
 
-color: #2a5c45;
+color: @error_container;
 }
 
 #pulseaudio.source-muted {
-color: #ff4d4d;
+color: @surface_tint;
 }
 
 #wireplumber {
-background-color: #fff0f5;
-color: #000000;
+background-color: @background;
+color: @on_surface_variant;
 }
 
 #wireplumber.muted {
-background-color: #f53c3c;
+background-color: @background;
 }
 
 /* =====================================================
@@ -243,23 +243,26 @@ TRAY
 
 #tray > .needs-attention {
 -gtk-icon-effect: highlight;
-background-color: #eb4d4b;
+background-color: @error;
 }
 
 /* =====================================================
+Brightness CTL
+===================================================== */
+#backlight{
+}
+/* =====================================================
 IDLE / SCRATCHPAD
 ===================================================== */
-/*
-#idle_inhibitor {
 
+#idle_inhibitor {
 }
 
 #idle_inhibitor.activated {
-
 }
-*/
+
 #scratchpad {
-background: rgba(0, 0, 0, 0.2);
+background: @background;
 }
 
 #scratchpad.empty {

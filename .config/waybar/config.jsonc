@@ -107,7 +107,7 @@
     },
 
     "cava": {
-        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+        "cava_config": "$HOME/.config/cava/config",
         "framerate": 30,
         "autosens": 1,
         "sensitivity": 100,

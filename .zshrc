@@ -40,3 +40,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 eval "$(starship init zsh)"
+export PATH="$HOME/.local/bin:$PATH"

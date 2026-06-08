@@ -19,6 +19,7 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Monitors/
+local colors = dofile(os.getenv("HOME") .. "/.config/hypr/colors.lua")
 hl.monitor({
 	output = "",
 	mode = "preferred",
@@ -51,7 +52,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("blueman-applet")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd("awww img" .. os.getenv("HOME") .. "/Pictures/wallpapers/Minimalist_Mountain.jpg")
+	hl.exec_cmd("awww restore")
 end)
 
 -------------------------------
@@ -96,8 +97,11 @@ hl.config({
 
 		-- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
 		col = {
-			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-			inactive_border = "rgba(595959aa)",
+			active_border = {
+				colors = { "rgba(" .. colors.primary .. "ff)", "rgba(" .. colors.tertiary .. "ff)" },
+				angle = 45,
+			},
+			inactive_border = "rgba(" .. colors.surface .. "99)",
 		},
 
 		-- Set to true enable resizing windows by clicking and dragging on borders and gaps
@@ -122,7 +126,7 @@ hl.config({
 			enabled = true,
 			range = 4,
 			render_power = 3,
-			color = "rgba(1a1a1aee)",
+			color = "rgba(" .. colors.background .. "88)",
 		},
 
 		-- https://wiki.hypr.land/Configuring/Variables/#blur

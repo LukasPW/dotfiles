@@ -1,0 +1,14 @@
+[config]
+varian = "dark"
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hyprland-colors.lua"
+output_path = "~/.config/hypr/colors.lua"
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar-colors.css"
+output_path = "~/.config/waybar/colors.css"
+[templates.kitty]
+input_path = "~/.config/matugen/templates/kitty-colors.conf"
+output_path = "~/.config/kitty/colors.conf"
+[templates.starship]
+input_path = "~/.config/matugen/templates/starship.toml"
+output_path = "~/.config/starship.toml"
