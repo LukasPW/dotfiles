@@ -1,8 +1,23 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: 
+let
+  sddm-astronaut = pkgs.sddm-astronaut.override {
+      embeddedTheme = "cyberpunk";
+      themeConfig = { };
+    };
+in {
   # Desktop / window managers
   programs.hyprland.enable = true;
 
-  services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.enable = true;
+  environment.systemPackages = [ sddm-astronaut ];
+  services.displayManager.sddm = {
+      enable = true;
+      package = lib.mkForce pkgs.kdePackages.sddm;
+      extraPackages = with pkgs; [
+      kdePackages.qtmultimedia
+      ];
+      theme = "sddm-astronaut-theme";
+    };
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
 

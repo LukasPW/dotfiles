@@ -1,6 +1,7 @@
 
-@theme "/usr/share/rofi/themes/purple.rasi"
+//@theme "/usr/share/rofi/themes/purple.rasi"
 configuration {
     show-icons:true;
     drun-display-format: "{name}";
 }
+@theme "/nix/store/smag1avi30y14xhc4k631hpkr4ypx6dw-rofi-2.0.0/share/rofi/themes/purple.rasi"
