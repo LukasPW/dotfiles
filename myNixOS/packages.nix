@@ -88,6 +88,7 @@
     qalculate-gtk
     zenity
     webcord
+    blender
 
     #Fun
     pipes
