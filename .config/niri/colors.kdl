@@ -1,0 +1,8 @@
+environment {
+  background = "#0f1511"
+  surface = "#0f1511"
+  primary = "#8ed5b1"
+  tertiary = "#a5cdde"
+  on_surface = "#dee4de"
+  on_surface_variant = "#c0c9c1"
+}
