@@ -152,7 +152,7 @@ font-weight: 500;
 
 #battery.charging,
 #battery.plugged {
-color: @surface_tint;
+color: @tertiary_container;
 }
 
 #battery.critical:not(.charging) {
@@ -234,7 +234,7 @@ TRAY
 ===================================================== */
 /*
 #tray {
-
+background-color: @background;
 }
 */
 #tray > .passive {

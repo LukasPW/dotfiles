@@ -7,3 +7,4 @@
 @define-color error {{colors.error.default.hex}};
 @define-color secondary {{colors.secondary.default.hex}};
 @define-color teritary {{colors.tertiary.default.hex}};
+@define-color tertiary_container {{colors.tertiary_container.default.hex}};

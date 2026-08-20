@@ -5,23 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-      ./packages.nix
-      ./fonts.nix
-      ./programs.nix
-    ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 3;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "not-arch-btw"; # Define your hostname.
+  networking.hostName = "Laptop-NixOS-BTW"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -34,6 +20,20 @@
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
+  #Enable bluetooth
+  hardware.bluetooth ={
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General ={
+            Experimental = true;
+            FastConnectable = true;
+          };
+        Policy = {
+          AutoEnable = true;
+        };
+      };
+  };
   # Firewall settings
   /*
   networking.nftables.enable = true;
@@ -69,10 +69,10 @@
 
   # Configure console keymap
   console.keyMap = "sv-latin1";
-
+  /*
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
+  */
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -81,12 +81,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -97,10 +91,6 @@
     isNormalUser = true;
     description = "LukasPW";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
   # Install firefox.
@@ -117,7 +107,40 @@
 	enable = true;
 	defaultEditor = true;
 };
+ # GTK Setup
+ environment.etc."xdg/gtk-3.0/settings.ini".text = ''
+  [Settings]
+  gtk-theme-name=catppuccin-mocha-mauve-standard+rimless
+  gtk-icon-theme-name=Papirus-Dark
+  gtk-cursor-theme-name=Adwaita
+  gtk-application-prefer-dark-theme=1
+ '';
 
+ environment.etc."xdg/gtk-4.0/settings.ini".text = ''
+  [Settings]
+  gtk-theme-name=catppuccin-mocha-mauve-standard+rimless
+  gtk-icon-theme-name=Papirus-Dark
+  gtk-cursor-theme-name=Adwaita
+  gtk-application-prefer-dark-theme=1
+ '';
+
+programs.dconf.enable = true;
+
+ /*
+  for future home manager
+  gtk = {
+      enable = true;
+      theme = {
+          name = "catppuccin-mocha-mauve-standard+default";
+          package = pkgs.catppuccin-gtk.override {
+              accents = ["mauve"];
+              size = "standard";
+              tweaks = [ "rimless" ];
+              variant = "mocha";
+            };
+        };
+    };
+  */
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
@@ -128,7 +151,7 @@
    powerManagement.enable = true;
  };
  */
-services.xserver.videoDrivers = ["nvidia"];
+services.xserver.videoDrivers = ["amdgpu"];
 
 	#Fixing Discord
 	environment.sessionVariables = {
@@ -142,7 +165,7 @@ services.xserver.videoDrivers = ["nvidia"];
 # configuration.nix
 
 boot.kernelModules = [ "sch_cake" "ifb" ];
-
+/*
 systemd.services.cake-qos = {
   description = "Cake QoS (bufferbloat mitigation) on primary interface";
   wants = [ "network-online.target"];
@@ -174,7 +197,7 @@ systemd.services.cake-qos = {
     ip link del ifb-cake 2>/dev/null || true
   '';
 };
-
+*/
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

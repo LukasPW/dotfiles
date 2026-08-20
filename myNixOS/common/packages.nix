@@ -1,4 +1,4 @@
- {config, pkgs, ... }: {
+ {config, pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     fastfetch
     vim 
@@ -15,6 +15,10 @@
     awww
     cmatrix
     cava
+
+    # Browsers
+    librewolf
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Terminal / CLI
     psmisc
@@ -36,6 +40,9 @@
     hyprlock
     hyprpicker
     hyprshot
+
+    #Niri Utils
+    swaylock
 
     #QuickShell and related stuff
     quickshell
@@ -76,6 +83,7 @@
     kdePackages.qtdeclarative
 
     # GUI applications
+    obsidian
     thunderbird
     anki
     obs-studio
@@ -93,5 +101,15 @@
     #Fun
     pipes
     ani-cli
+
+    #Themes
+    catppuccin-cursors.mochaDark
+   (pkgs.catppuccin-gtk.override {
+      accents = [ "mauve" ];
+      size = "standard";
+      tweaks = [ "rimless" ];
+      variant = "mocha";
+    })
+    tela-icon-theme
   ];
 }

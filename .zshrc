@@ -55,4 +55,4 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Aliases
 alias nrs="sudo nixos-rebuild switch"
-alias fnrs="sudo nixos-rebuild switch --impure --flake ~/myNixOS/#not-arch-btw"
+alias fnrs="sudo nixos-rebuild switch --flake ~/myNixOS/#Laptop-NixOS-BTW"

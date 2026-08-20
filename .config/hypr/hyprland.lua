@@ -27,6 +27,12 @@ hl.monitor({
   scale = 1,
 })
 hl.monitor({
+  output = "eDP-1",
+  mode = "1920x1080@60",
+  position = "0x0",
+  scale = 1,
+})
+hl.monitor({
   output = "DP-1",
   mode = "2560x1440@144",
   position = "0x0",
@@ -38,6 +44,13 @@ hl.monitor({
   position = "2560x360",
   scale = 1,
 })
+--Laptop workspace Rules
+hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
+hl.workspace_rule({ workspace = "2", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "3", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "4", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "5", monitor = "eDP-1" })
+
 -- Monitor 1 workspace rules
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
@@ -64,6 +77,9 @@ local menu = "rofi -show drun"
 -------------------
 ---- AUTOSTART ----
 -------------------
+hl.config({
+  input = { numlock_by_default = true, },
+})
 
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
@@ -85,8 +101,11 @@ end)
 -------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Environment-variables/
-hl.env("XCURSOR_SIZE", "18")
-hl.env("HYPRCURSOR_SIZE", "18")
+hl.env("XCURSOR_SIZE", "20")
+hl.env("XCURSOR_THEME", "catppuccin-mocha-dark-cursors")
+
+hl.env("HYPRCURSOR_THEME", "catppuccin-mocha-dark-cursors")
+hl.env("HYPRCURSOR_SIZE", "20")
 
 -----------------------
 ----- PERMISSIONS -----
