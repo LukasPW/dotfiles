@@ -8,6 +8,18 @@
   boot.loader.limine.style = {
     wallpapers = [ ./Fireplace.png ];   # path to your splash image
     wallpaperStyle = "stretched";           # CachyOS uses stretched, not centered/tiled
+      # Light gray background, dark text for contrast
+      #backdrop = "D3D3D3";  # light gray fill for the screen
+
+      graphicalTerminal = {
+        background = "00D3D3D3";  # TT=00 (opaque) + light gray, matches backdrop
+        foreground = "1A1A2E";    # dark navy — reads clearly on light gray
+      };
+
+      interface = {
+        brandingColor = "1A1A2E";  # title text at top
+        helpColor = "333333";      # keybind hints
+      };
   };
 
   boot.loader.limine.extraConfig = ''
