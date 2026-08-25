@@ -34,6 +34,7 @@
     aria2
     jq
     fetch
+    spotify-player
 
     # Hyprland ecosystem (hyprland itself is a module, see below)
     hypridle

@@ -153,7 +153,6 @@ programs.dconf.enable = true;
  */
 services.xserver.videoDrivers = ["amdgpu"];
 
-	#Fixing Discord
 	environment.sessionVariables = {
  		 NIXOS_OZONE_WL = "1";
   		ELECTRON_OZONE_PLATFORM_HINT = "wayland";  # force instead of auto

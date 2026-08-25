@@ -56,7 +56,7 @@
 
   # Security tooling
   programs.wireshark.enable = true;
-  users.users.aswdxtbyyn.extraGroups = ["wireshark"];
+  users.users.aswdxtbyyn.extraGroups = ["wireshark" "docker"];
 
   #Editor
   programs.neovim = {
