@@ -62,20 +62,6 @@
     playerctl
     cava
 
-    # Security / pentesting
-    nmap
-    bettercap
-    john
-    gobuster
-    sherlock
-    holehe
-    seclists
-    tcpdump
-    burpsuite
-    socat
-    netcat
-    wireshark
-
     # Dev / languages / runtimes
     gcc
     gdb

@@ -8,5 +8,7 @@
     ./programs.nix
     ./fonts.nix
     ./system.nix
+    ./vpn.nix
+    ./security.nix
   ];
 }
