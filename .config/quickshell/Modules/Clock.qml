@@ -1,8 +1,9 @@
 import Quickshell
 import QtQuick
+import "../"
 
 Text {
-    color: "#81c7a4"
+    color: Theme.secondary
     text: Qt.formatDateTime(clock.date, "ddd-MM/dd-HH:mm")
     font {
         family: "Maple Mono NF CN"

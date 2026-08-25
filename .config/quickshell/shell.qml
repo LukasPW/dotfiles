@@ -4,6 +4,7 @@ import Quickshell.Hyprland // Hyprland IPC accsess
 import QtQuick
 import QtQuick.Layouts // For RowLayout
 import Quickshell.Io
+import "."
 import "Modules"
 
 ShellRoot {
@@ -13,7 +14,7 @@ ShellRoot {
             required property var modelData
             screen: modelData
 
-            color: "#0f1511"
+            color: Theme.background
             anchors {
                 top: true
                 left: true

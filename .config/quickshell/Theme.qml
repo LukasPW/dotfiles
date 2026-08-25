@@ -1,0 +1,13 @@
+pragma Singleton
+import QtQuick
+
+QtObject {
+    readonly property color background: "#101418"
+
+    readonly property color primary: "#9dcbfc"
+    readonly property color secondary: "#bac8da"
+    readonly property color tertiary: "#d4bee5"
+    readonly property color error: "#ffb4ab"
+
+    readonly property color outline: "#8c9199"
+}

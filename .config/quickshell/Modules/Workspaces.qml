@@ -4,6 +4,7 @@ import Quickshell.Hyprland // Hyprland IPC accsess
 import QtQuick
 import QtQuick.Layouts // For RowLayout
 import Quickshell.Io
+import "../"
 
 RowLayout {
     id: workspaces
@@ -19,7 +20,7 @@ RowLayout {
             property bool isActive: Hyprland.focusedWorkspace?.id === (index + startWs)
 
             text: index + startWs
-            color: isActive ? "#0db9d7" : (ws ? "#7aa2f7" : "#444b6a")
+            color: isActive ? Theme.primary : (ws ? Theme.secondary : Theme.outline)
             font {
                 pixelSize: 14
                 bold: true

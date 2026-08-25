@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Services.UPower
 import QtQuick
+import "../"
 
 Text {
     id: root
@@ -27,10 +28,10 @@ Text {
     }
 
     color: {
-        if (full || charging) return "#0db9d7"
-        if (pct < 15) return "#f7768e"
-        if (pct < 40) return "#e0af68"
-        return "#81c7a4"
+        if (full || charging) return Theme.primary
+        if (pct < 15) return Theme.error
+        if (pct < 40) return Theme.tertiary
+        return Theme.secondary
     }
 
     font {
