@@ -4,5 +4,6 @@
       brightnessctl
       networkmanagerapplet
 
+      claude-code
    ];
 }

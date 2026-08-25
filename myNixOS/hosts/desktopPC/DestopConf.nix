@@ -27,13 +27,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
-hardware.graphics.enable = true;
-hardware.nvidia = {
-   open = true;
-   modesetting.enable = true;
-   powerManagement.enable = true;
- };
-services.xserver.videoDrivers = ["nvidia"];
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    open = true;
+    modesetting.enable = true;
+    powerManagement.enable = true;
+  };
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia-container-toolkit.enable = true;
 
 	#Fixing Discord
 	environment.sessionVariables = {

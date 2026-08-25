@@ -26,6 +26,7 @@ ShellRoot {
                 anchors.leftMargin: 8
                 anchors.verticalCenter: parent.verticalCenter
                 Workspaces {}
+                IdleInhibitor {}
             }
             RowLayout {
                 id: rightcontent
@@ -33,6 +34,7 @@ ShellRoot {
                 anchors.rightMargin: 8
                 anchors.leftMargin: 8
                 anchors.verticalCenter: parent.verticalCenter
+                Battery {}
                 Volume {}
                 Clock {}
             }

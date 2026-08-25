@@ -20,6 +20,9 @@
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
+  # Enable UPower for battery status (used by the Quickshell battery module)
+  services.upower.enable = true;
+
   #Enable bluetooth
   hardware.bluetooth ={
       enable = true;

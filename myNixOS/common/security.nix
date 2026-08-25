@@ -35,7 +35,6 @@
     sqlmap
 
     # Exploitation frameworks
-    metasploit
 
     # Credential attacks
     john
