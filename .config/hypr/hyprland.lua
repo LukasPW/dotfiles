@@ -86,7 +86,8 @@ hl.config({
 
 -- hl.exec_cmd(terminal)
 hl.on("hyprland.start", function()
-  hl.exec_cmd("waybar")
+  --hl.exec_cmd("waybar")
+  hl.exec_cmd("qs")
   hl.exec_cmd("dunst")
   hl.exec_cmd("GDK_BACKEND=wayland nm-applet --indicator")
   hl.exec_cmd("easyeffects --gapplication-service")

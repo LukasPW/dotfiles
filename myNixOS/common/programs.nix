@@ -43,7 +43,14 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
   };
+
   #laptop specific audio
   services.blueman.enable = true;
 
@@ -51,12 +58,13 @@
   # Gaming / virtualization
   programs.steam.enable = true;
   virtualisation.docker.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "aswdxtbyyn" ];
 
   # Security tooling
   programs.wireshark.enable = true;
-  users.users.aswdxtbyyn.extraGroups = ["wireshark"];
+  users.users.aswdxtbyyn.extraGroups = ["wireshark" "docker"];
 
   #Editor
   programs.neovim = {

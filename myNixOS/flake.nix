@@ -49,8 +49,8 @@
           specialArgs = {inherit inputs;};
           modules = [
             ./common
-            ./hosts/desktop/configuration.nix
-            ./hosts/desktop/hardware-configuration.nix
+            ./hosts/desktopPC/DestopConf.nix
+            ./hosts/desktopPC/hardware-configuration.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];
         };
