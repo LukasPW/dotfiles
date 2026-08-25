@@ -58,5 +58,5 @@ alias nrs="sudo nixos-rebuild switch"
 #alias fnrs="sudo nixos-rebuild switch --flake ~/myNixOS/#Desktop-NixOS-BTW"
 alias hermes='docker exec -it hermes-gateway hermes'
 fnrs() {
-  sudo nixos-rebuild switch --flake ~/myNixOS/#"$1"
+  sudo nixos-rebuild switch --flake ~/myNixOS/#"${1:-$(hostname)}"
 }
