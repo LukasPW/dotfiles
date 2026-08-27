@@ -6,8 +6,21 @@ import QtQuick.Layouts // For RowLayout
 import Quickshell.Io
 import "."
 import "Modules"
+import "Modules/Lock"
 
 ShellRoot {
+    LockScreen {
+        id: lockScreen
+    }
+
+    IpcHandler {
+        target: "lock"
+
+        function lock(): void {
+            lockScreen.locked = true;
+        }
+    }
+
     Variants {
         model: Quickshell.screens
         PanelWindow {
@@ -35,6 +48,7 @@ ShellRoot {
                 anchors.rightMargin: 8
                 anchors.leftMargin: 8
                 anchors.verticalCenter: parent.verticalCenter
+                Network {}
                 Battery {}
                 Volume {}
                 Clock {}

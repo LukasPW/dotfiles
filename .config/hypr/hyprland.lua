@@ -327,7 +327,18 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())       -- dwindle
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+-- hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock")) -- old: hyprlock
+-- TTY escape hatch if the QuickShell lockscreen ever gets stuck: switch to a TTY
+-- (e.g. Ctrl+Alt+F2), log in, run `pkill quickshell` to kill the lock client.
+-- Hyprland will then show its own "crashed lockscreen" recovery screen instead of
+-- unlocking - clear it with: hyprctl --instance 0 eval 'hl.clear_crashed_lockscreen()'
+-- then switch back with Ctrl+Alt+F1 (or whichever VT Hyprland is running on).
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("qs ipc call lock lock"))
+
+-- Lock on lid close. hypridle 0.1.8 doesn't support a `lid` listener event, so this is
+-- handled here instead, mirroring the raw `bindl = , switch:on:Lid Switch, exec, ...`
+-- syntax (locked = true here is the "l" bindl flag, so it still fires while locked).
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("qs ipc call lock lock"), { locked = true })
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
