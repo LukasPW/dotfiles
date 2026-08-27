@@ -1,5 +1,5 @@
 [config]
-varian = "dark"
+mode = "dark"
 [templates.hyprland]
 input_path = "~/.config/matugen/templates/hyprland-colors.lua"
 output_path = "~/.config/hypr/colors.lua"

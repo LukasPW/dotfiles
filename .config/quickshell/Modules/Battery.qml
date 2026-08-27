@@ -3,6 +3,10 @@ import Quickshell.Services.UPower
 import QtQuick
 import "../"
 
+// UPower.displayDevice is UPower's own pick of "the one battery/UPS worth
+// showing" (handles multi-battery laptops, docks, etc.), so we don't have
+// to enumerate UPower.devices ourselves. `visible` hides this module
+// entirely on desktops with no battery.
 Text {
     id: root
 

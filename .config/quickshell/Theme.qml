@@ -9,5 +9,11 @@ QtObject {
     readonly property color tertiary: "#f2bb99"
     readonly property color error: "#ffb4ab"
 
-    readonly property color outline: "#9d8d92"
+    readonly property color outline: "#8c9199"
+    readonly property color surfaceContainer: "#1d2024"
+
+    readonly property int radius: 12
+    readonly property string fontFamily: "sans-serif"
+    readonly property int fontSizeSmall: 14
+    readonly property int fontSizeLarge: 20
 }

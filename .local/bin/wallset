@@ -5,5 +5,5 @@ img="${1:-$(fd . /home/aswdxtbyyn/Pictures/wallpapers/ | fzf)}"
 [ -z "$img" ] && exit 1
 
 awww img "$img"
-matugen image "$img" --source-color-index 0
+matugen image "$img" --source-color-index 0 --mode dark
 hyprctl reload

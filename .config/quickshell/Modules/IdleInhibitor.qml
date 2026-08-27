@@ -3,6 +3,9 @@ import Quickshell.Wayland
 import QtQuick
 import "../"
 
+// Manual toggle for the Wayland idle-inhibit protocol (screen lock/blank
+// suppression) - e.g. for watching a video without the compositor idling.
+// Purely a click toggle; nothing else in the shell drives `inhibiting`.
 Text {
     id: root
 
@@ -16,6 +19,10 @@ Text {
         weight: 400
     }
 
+    // `IdleInhibitor` here is Quickshell.Wayland's protocol object, not
+    // this file's own type (same name, different thing). `QsWindow.window`
+    // is an attached property that resolves to the PanelWindow this Text
+    // lives in - the inhibitor needs a real wl_surface to attach to.
     IdleInhibitor {
         enabled: root.inhibiting
         window: QsWindow.window
