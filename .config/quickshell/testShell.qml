@@ -1,3 +1,8 @@
+// Standalone scratch file - not imported by shell.qml and not part of the
+// running shell. This is the pre-Modules/ prototype of the bar (inline
+// CPU-usage-via-/proc/stat polling, hardcoded colors, single-monitor only)
+// kept for reference. The real, live bar is shell.qml + Modules/*.qml.
+// Run in isolation with `qs -p ~/.config/quickshell/testShell.qml`.
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland // Hyprland IPC accsess

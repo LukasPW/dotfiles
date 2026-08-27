@@ -7,6 +7,9 @@ import Quickshell.Io
 import Quickshell.Services.Pipewire
 import "../"
 
+// Shows speaker volume (click to mute, scroll to adjust) plus a mic-muted
+// badge. Reactivity comes entirely from Pipewire's own change signals - no
+// polling.
 Text {
     id: root
 
