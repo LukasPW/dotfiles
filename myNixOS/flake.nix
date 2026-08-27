@@ -50,6 +50,7 @@
           modules = [
             ./common
             ./hosts/desktopPC/DestopConf.nix
+            ./hosts/desktopPC/DesktopPackages.nix
             ./hosts/desktopPC/hardware-configuration.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];

@@ -36,5 +36,16 @@
  		 NIXOS_OZONE_WL = "1";
   		ELECTRON_OZONE_PLATFORM_HINT = "wayland";  # force instead of auto
 	};
+  
+  #XDG Portal Setup
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    config.common.default = "*";
+  };
 
-  }
+  #Keyring setup
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+
+}

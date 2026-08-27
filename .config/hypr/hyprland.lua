@@ -95,6 +95,10 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("hypridle")
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("awww restore")
+  hl.exec_cmd("systemctl --user start hyprland-session.target")
+end)
+hl.on("hyprland.shutdown", function()
+  os.execute("systemctl --user stop graphical-session.target")
 end)
 
 -------------------------------
