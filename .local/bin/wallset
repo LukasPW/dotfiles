@@ -7,4 +7,3 @@ img="${1:-$(fd . /home/aswdxtbyyn/Pictures/wallpapers/ | fzf)}"
 awww img "$img"
 matugen image "$img" --source-color-index 0 --mode dark
 hyprctl reload
-pkill -SIGUSR2 -f waybar

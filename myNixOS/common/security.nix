@@ -34,8 +34,6 @@
     burpsuite
     sqlmap
 
-    # Exploitation frameworks
-
     # Credential attacks
     john
     hashcat
