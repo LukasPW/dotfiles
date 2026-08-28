@@ -4,33 +4,33 @@ format = "$custom$username$hostname$directory$git_branch $character"
 
 [username]
 show_always = false
-style_user = "#feb0d3"
+style_user = "#c4c0ff"
 style_root = "bold red"
 format = "[$user]($style)"
 
 [hostname]
 ssh_only = true
-style = "#feb0d3"
+style = "#c4c0ff"
 format = "[@$hostname ]($style)"
 
 [directory]
-style = "#feb0d3"
+style = "#c4c0ff"
 format = "[$path]($style)"
 truncation_length = 0
 truncate_to_repo = false
 
 [git_branch]
 symbol = ""
-style = "#e0bdcb"
+style = "#c7c4dc"
 format = " ([($branch)]($style))"
 
 [character]
-success_symbol = "[➜](bold #e0bdcb)"
+success_symbol = "[➜](bold #c7c4dc)"
 error_symbol = "[➜](bold red)"
 vicmd_symbol = "[❮](bold yellow)"
 
 [custom.logo]
 command = "echo "
 when = "true"
-style ="#feb0d3"
+style ="#c4c0ff"
 format = "[$output]($style) "

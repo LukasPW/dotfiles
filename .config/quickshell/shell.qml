@@ -64,6 +64,7 @@ ShellRoot {
                 Battery {}
                 Volume {}
                 Clock {}
+                Tray {}
             }
         }
     }

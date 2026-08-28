@@ -91,12 +91,5 @@
 
     #Themes
     catppuccin-cursors.mochaDark
-   (pkgs.catppuccin-gtk.override {
-      accents = [ "mauve" ];
-      size = "standard";
-      tweaks = [ "rimless" ];
-      variant = "mocha";
-    })
-    tela-icon-theme
   ];
 }

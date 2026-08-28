@@ -13,14 +13,26 @@ Item {
     // Only backlight device present on this machine (see `brightnessctl -m`).
     readonly property string device: "amdgpu_bl1"
 
+    // Hidden until the availability check below confirms brightnessctl is
+    // on PATH, so the module doesn't show on machines without it installed.
+    property bool available: false
+
     property int rawBrightness: 0
     property int maxBrightness: 1
     property real level: maxBrightness > 0 ? rawBrightness / maxBrightness : 0
     property bool popupHovered: false
     property bool dragging: false
 
-    implicitWidth: label.implicitWidth
-    implicitHeight: label.implicitHeight
+    visible: root.available
+    implicitWidth: root.available ? label.implicitWidth : 0
+    implicitHeight: root.available ? label.implicitHeight : 0
+
+    Component.onCompleted: availabilityCheck.exec(["sh", "-c", "command -v brightnessctl"])
+
+    Process {
+        id: availabilityCheck
+        onExited: (exitCode) => root.available = exitCode === 0
+    }
 
     // Grace period so the popup survives the gap while the pointer travels
     // from the label down into the slider - without it, leaving the label's
