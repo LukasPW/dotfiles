@@ -36,6 +36,9 @@
     fetch
     spotify-player
 
+    #3D Printing Utils
+    orca-slicer
+
     # Hyprland ecosystem (hyprland itself is a module, see below)
     hypridle
     hyprlock

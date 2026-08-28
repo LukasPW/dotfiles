@@ -60,7 +60,6 @@ ShellRoot {
                 anchors.rightMargin: 8
                 anchors.leftMargin: 8
                 anchors.verticalCenter: parent.verticalCenter
-                Network {}
                 Battery {}
                 Volume {}
                 Clock {}
