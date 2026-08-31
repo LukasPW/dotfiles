@@ -3,6 +3,10 @@
 Personal dotfiles managed with a bare git repository. Config files are tracked with paths relative to `$HOME`, so they land where programs expect them on checkout.
 
 ---
+## NOTE 
+Feel free to point out issues in the issues tab but I will be Developing this setup for myself first untill further notice. As such I will **not** prioritize any issues found by others and strongly encourage you to either fork this repo and make your own config derived of it or just waiting for a potential future release intended for public use.
+
+---
 
 ## Setup
 
