@@ -52,4 +52,11 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
+  # Setting hyprland-session
+  systemd.user.targets.hyprland-session = {
+    description = "Hyprland compositor session";
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
 }
