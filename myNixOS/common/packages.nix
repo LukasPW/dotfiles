@@ -87,6 +87,7 @@
     zenity
     webcord
     blender
+    xarchiver
 
     #Fun
     pipes
