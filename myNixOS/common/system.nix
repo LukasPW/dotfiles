@@ -48,4 +48,8 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  # USB block auto mounting
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
 }
