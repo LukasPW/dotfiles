@@ -2,15 +2,15 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    readonly property color background: "#131318"
+    readonly property color background: "#101418"
 
-    readonly property color primary: "#c4c0ff"
-    readonly property color secondary: "#c7c4dc"
-    readonly property color tertiary: "#ebb9d0"
+    readonly property color primary: "#9dcbfc"
+    readonly property color secondary: "#bac8da"
+    readonly property color tertiary: "#d4bee5"
     readonly property color error: "#ffb4ab"
 
-    readonly property color outline: "#928f99"
-    readonly property color surfaceContainer: "#201f25"
+    readonly property color outline: "#8c9199"
+    readonly property color surfaceContainer: "#1d2024"
 
     readonly property int radius: 12
     readonly property string fontFamily: "sans-serif"

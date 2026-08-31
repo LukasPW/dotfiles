@@ -36,6 +36,9 @@
     fetch
     spotify-player
 
+    #3D Printing Utils
+    orca-slicer
+
     # Hyprland ecosystem (hyprland itself is a module, see below)
     hypridle
     hyprlock
@@ -91,12 +94,5 @@
 
     #Themes
     catppuccin-cursors.mochaDark
-   (pkgs.catppuccin-gtk.override {
-      accents = [ "mauve" ];
-      size = "standard";
-      tweaks = [ "rimless" ];
-      variant = "mocha";
-    })
-    tela-icon-theme
   ];
 }

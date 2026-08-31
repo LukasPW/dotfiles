@@ -5,5 +5,6 @@
       networkmanagerapplet
 
       claude-code
+      vmware-workstation
    ];
 }

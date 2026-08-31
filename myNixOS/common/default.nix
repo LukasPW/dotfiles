@@ -10,5 +10,6 @@
     ./system.nix
     ./vpn.nix
     ./security.nix
+    ./GTKtheme.nix
   ];
 }

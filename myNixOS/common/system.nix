@@ -48,4 +48,15 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  # USB block auto mounting
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+  # Setting hyprland-session
+  systemd.user.targets.hyprland-session = {
+    description = "Hyprland compositor session";
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
 }

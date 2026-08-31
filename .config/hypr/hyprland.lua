@@ -112,6 +112,14 @@ hl.env("XCURSOR_THEME", "catppuccin-mocha-dark-cursors")
 hl.env("HYPRCURSOR_THEME", "catppuccin-mocha-dark-cursors")
 hl.env("HYPRCURSOR_SIZE", "20")
 
+-- Without a platform theme plugin, Qt/QML apps (quickshell included) never
+-- learn an icon theme name and only search the near-empty "hicolor" base
+-- theme, so tray/app icons silently fail to resolve. gtk3 is bundled with
+-- this system's qtbase build already - no extra package needed - and reads
+-- the icon theme from dconf (org.gnome.desktop.interface icon-theme, see
+-- Papirus-Dark enforcement below).
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+
 -----------------------
 ----- PERMISSIONS -----
 -----------------------

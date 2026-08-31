@@ -110,24 +110,9 @@
 	enable = true;
 	defaultEditor = true;
 };
- # GTK Setup
- environment.etc."xdg/gtk-3.0/settings.ini".text = ''
-  [Settings]
-  gtk-theme-name=catppuccin-mocha-mauve-standard+rimless
-  gtk-icon-theme-name=Papirus-Dark
-  gtk-cursor-theme-name=Adwaita
-  gtk-application-prefer-dark-theme=1
- '';
-
- environment.etc."xdg/gtk-4.0/settings.ini".text = ''
-  [Settings]
-  gtk-theme-name=catppuccin-mocha-mauve-standard+rimless
-  gtk-icon-theme-name=Papirus-Dark
-  gtk-cursor-theme-name=Adwaita
-  gtk-application-prefer-dark-theme=1
- '';
-
+virtualisation.vmware.host.enable = true;
 programs.dconf.enable = true;
+
 
  /*
   for future home manager
