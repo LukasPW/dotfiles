@@ -26,6 +26,11 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  
+  # Adding swap Partition since GUI installer didnt add one
+  swapDevices = [
+    {device = "/var/swapfile"; size = 4096;}
+  ];
 
   hardware.graphics.enable = true;
   hardware.nvidia = {
@@ -46,40 +51,40 @@
 
 
 
-# configuration.nix
+  # configuration.nix
 
-boot.kernelModules = [ "sch_cake" "ifb" ];
+  boot.kernelModules = [ "sch_cake" "ifb" ];
 
-systemd.services.cake-qos = {
-  description = "Cake QoS (bufferbloat mitigation) on primary interface";
-  wants = [ "network-online.target"];
-  after = ["network-online.target"];
-  wantedBy = [ "network-online.target" ];
-  serviceConfig.Type = "oneshot";
-  serviceConfig.RemainAfterExit = true;
-  path = [ pkgs.iproute2 ];
-  script = ''
-    IFACE="enp7s0"   # e.g. eno1, enp3s0 — check with `ip link`
-    IFB="ifb-cake"
+  systemd.services.cake-qos = {
+    description = "Cake QoS (bufferbloat mitigation) on primary interface";
+    wants = [ "network-online.target"];
+    after = ["network-online.target"];
+    wantedBy = [ "network-online.target" ];
+    serviceConfig.Type = "oneshot";
+    serviceConfig.RemainAfterExit = true;
+    path = [ pkgs.iproute2 ];
+    script = ''
+      IFACE="enp7s0"   # e.g. eno1, enp3s0 — check with `ip link`
+      IFB="ifb-cake"
 
-    # --- Egress (upload) shaping, directly on the interface ---
-    tc qdisc replace dev "$IFACE" root cake bandwidth 89mbit ethernet nat dual-srchost
+      #  --- Egress (upload) shaping, directly on the interface ---
+      tc qdisc replace dev "$IFACE" root cake bandwidth 89mbit ethernet nat dual-srchost
 
-    # --- Ingress (download) shaping, via IFB redirect ---
-    ip link add "$IFB" type ifb 2>/dev/null || true
-    ip link set "$IFB" up
+      # --- Ingress (download) shaping, via IFB redirect ---
+      ip link add "$IFB" type ifb 2>/dev/null || true
+      ip link set "$IFB" up
 
-    tc qdisc replace dev "$IFACE" handle ffff: ingress
-    tc filter replace dev "$IFACE" parent ffff: matchall action mirred egress redirect dev "$IFB"
+      tc qdisc replace dev "$IFACE" handle ffff: ingress
+      tc filter replace dev "$IFACE" parent ffff: matchall action mirred egress redirect dev "$IFB"
 
-    tc qdisc replace dev "$IFB" root cake bandwidth 72mbit ethernet nat dual-dsthost
-  '';
+      tc qdisc replace dev "$IFB" root cake bandwidth 72mbit ethernet nat dual-dsthost
+    '';
 
-  preStop = ''
-    tc qdisc del dev "enp7s0" root 2>/dev/null || true
-    tc qdisc del dev "enp7s0" ingress 2>/dev/null || true
-    ip link del ifb-cake 2>/dev/null || true
-  '';
+    preStop = ''
+      tc qdisc del dev "enp7s0" root 2>/dev/null || true
+      tc qdisc del dev "enp7s0" ingress 2>/dev/null || true
+      ip link del ifb-cake 2>/dev/null || true
+    '';
 };
 
   # Some programs need SUID wrappers, can be configured further or are
