@@ -1,24 +1,3 @@
-/*
-{
-  description = "My system flake";
-
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    zen-browser = {
-        url = "github:youwen5/zen-browser-flake";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-  };
-
-  outputs = { self, nixpkgs, ... }@inputs: {
-      nixosConfigurations.not-arch-btw = nixpkgs.lib.nixosSystem{
-          specialArgs = {inherit inputs;};
-          modules = [ ./configuration.nix];
-        };
-
-  };
-}
-*/
 {
   description = "My multi machine system flake :)";
 
