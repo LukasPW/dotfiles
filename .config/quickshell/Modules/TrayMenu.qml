@@ -106,8 +106,8 @@ PopupWindow {
                         text: {
                             const bt = entryRoot.entry.buttonType;
                             const checked = entryRoot.entry.checkState === Qt.Checked;
-                            if (bt === QsMenuButtonType.CheckBox) return checked ? "" : "";
-                            if (bt === QsMenuButtonType.RadioButton) return checked ? "" : "";
+                            if (bt === QsMenuButtonType.CheckBox) return checked ? "" : "";
+                            if (bt === QsMenuButtonType.RadioButton) return checked ? "" : "";
                             return "";
                         }
                         color: Theme.secondary
@@ -124,7 +124,7 @@ PopupWindow {
 
                     Text {
                         visible: entryRoot.entry.hasChildren
-                        text: "" // fa-chevron-right
+                        text: "" // fa-chevron-right
                         color: Theme.secondary
                         font { family: "Maple Mono NF CN"; pixelSize: 12 }
                     }

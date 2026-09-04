@@ -17,7 +17,7 @@ Text {
 
     visible: wiredDevice !== undefined || wifiDevice !== undefined
 
-    text: wiredConnected ? "" : ""  // fa-sitemap (wired) / fa-wifi
+    text: wiredConnected ? "" : ""  // fa-sitemap (wired) / fa-wifi
     color: connected ? Theme.secondary : Theme.error
     font {
         family: "Maple Mono NF CN"
