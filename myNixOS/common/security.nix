@@ -4,8 +4,6 @@
   # Import this module conditionally from your flake/configuration.nix
   # when you want the security/pentesting toolkit built into the system.
 
-  nixpkgs.config.allowUnfree = true; # required for burpsuite
-
   environment.systemPackages = with pkgs; [
     # VPN / connectivity
     openvpn
@@ -51,5 +49,8 @@
 
     # General
     python3
+
+    # Reverse enginering
+    ghidra
   ];
 }
