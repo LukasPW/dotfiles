@@ -72,6 +72,7 @@
     python3
     jdk
     kdePackages.qtdeclarative
+    glibc
 
     # GUI applications
     obsidian
