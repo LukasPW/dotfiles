@@ -1,6 +1,5 @@
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Hyprland // Hyprland IPC accsess
 import QtQuick
 import QtQuick.Layouts // For RowLayout
 import Quickshell.Io

@@ -6,21 +6,21 @@
 layout {
     focus-ring {
         // Mirrors Hyprland's active_border gradient (primary -> tertiary, 45deg)
-        active-gradient from="#feb0d3" to="#f2bb99" angle=45
+        active-gradient from="#8ed5b1" to="#a5cdde" angle=45
 
         // Mirrors Hyprland's inactive_border: surface at alpha 0x99
-        inactive-color "#19111499"
+        inactive-color "#0f151199"
     }
 
     border {
         // If you ever flip on `border` instead of `focus-ring`, same gradient applies here
-        active-gradient from="#feb0d3" to="#f2bb99" angle=45
-        inactive-color "#19111499"
+        active-gradient from="#8ed5b1" to="#a5cdde" angle=45
+        inactive-color "#0f151199"
         urgent-color "#ffb4ab"
     }
 
     shadow {
         // Mirrors Hyprland's shadow color: background at alpha 0x88
-        color "#19111488"
+        color "#0f151188"
     }
 }

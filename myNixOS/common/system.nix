@@ -59,4 +59,21 @@
     wants = [ "graphical-session-pre.target" ];
     after = [ "graphical-session-pre.target" ];
   };
+
+  # A Test Script that Notifys me when some one pings me
+  systemd.user.services.ping-notify = {
+    description = "Notify via dunst when a ping hits this machine";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.writeShellScript "ping-notify" ''
+        ${pkgs.systemd}/bin/journalctl -k -f -g 'PING_DROP:' --since now | while read -r line; do
+        ${pkgs.libnotify}/bin/notify-send -u normal "Ping detected" "$line"
+        done
+      ''}";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+  };
+
+
 }

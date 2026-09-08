@@ -1,1 +1,2 @@
 singleton Theme 1.0 Theme.qml
+singleton Compositor 1.0 Compositor.qml
