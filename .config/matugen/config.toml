@@ -15,3 +15,6 @@ output_path = "~/.config/starship.toml"
 [templates.quickshell]
 input_path = "~/.config/matugen/templates/quickshell-theme.qml"
 output_path = "~/.config/quickshell/Theme.qml"
+[templates.niri]
+input_path = '~/.config/matugen/templates/niri-colors.kdl'
+output_path = '~/.config/niri/colors.kdl'

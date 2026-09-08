@@ -343,7 +343,7 @@ hl.bind(
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())       -- dwindle
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle
 -- hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock")) -- old: hyprlock
@@ -466,10 +466,4 @@ hl.window_rule({
 
   move = "20 monitor_h-120",
   float = true,
-})
-
-hl.window_rule({
-  name = "discord-to-workspace-5",
-  match = { class = "discord" },
-  workspace = "6 silent",
 })

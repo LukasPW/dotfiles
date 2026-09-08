@@ -115,18 +115,13 @@ output "DP-2"{
 
 output "eDP-1" {
     mode "1920x1080@60"   // whatever your actual panel resolution/refresh is
-    scale 1.25             // small screens often want fractional scale — try 1.0 first, adjust to taste
+    scale 1             // small screens often want fractional scale — try 1.0 first, adjust to taste
+}
+cursor {
+    xcursor-theme "catppuccin-mocha-dark-cursors"
+    xcursor-size 25
 }
 
-environment {
-    XCURSOR_SIZE "18"
-    HYPRCURSOR_SIZE "18"
-}
-
-window-rule {
-    geometry-corner-radius 10
-    clip-to-geometry true
-}
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Layout
@@ -182,19 +177,7 @@ layout {
         // How many logical pixels the ring extends out from the windows.
         width 4
 
-        // Colors can be set in a variety of ways:
-        // - CSS named colors: "red"
-        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
-
-        // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
-
-        // Color of the ring on inactive monitors.
-        //
-        // The focus ring only draws around the active window, so the only place
-        // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
+        // Colors are now supplied by matugen via colors.kdl (see include below).
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -219,11 +202,8 @@ layout {
         off
 
         width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
 
-        // Color of the border around windows that request your attention.
-        urgent-color "#9b0000"
+        // Colors are now supplied by matugen via colors.kdl (see include below).
 
         // Gradients can use a few different interpolation color spaces.
         // For example, this is a pastel rainbow gradient via in="oklch longer hue".
@@ -266,8 +246,7 @@ layout {
         // Offset moves the shadow relative to the window.
         offset x=0 y=5
 
-        // You can also change the shadow color and opacity.
-        color "#0007"
+        // Color is now supplied by matugen via colors.kdl (see include below).
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -283,13 +262,20 @@ layout {
     }
 }
 
+// matugen-generated colors, live-reloaded whenever this file changes.
+// Overrides the active/inactive colors for focus-ring, border, and the
+// shadow color set in the layout block above. `include` only works at the
+// top level of the config (not nested inside layout/etc), and it must come
+// after the layout block to override its colors.
+include "colors.kdl"
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+spawn-at-startup "qs"
 spawn-at-startup "awww-daemon"
 spawn-at-startup "awww restore"
 spawn-at-startup "dunst"
@@ -354,6 +340,10 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+window-rule {
+  match app-id="kitty"
+  draw-border-with-background false
 }
 
 // Example: block out two password managers from screen capture.
@@ -428,7 +418,7 @@ binds {
     // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Q repeat=false { close-window; }
+    Mod+C repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -601,7 +591,7 @@ binds {
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
+    Mod+Shift+Space { center-column; }
 
     // Center all fully visible columns on screen.
     Mod+Ctrl+C { center-visible-columns; }

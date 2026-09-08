@@ -3,7 +3,7 @@
 
       brightnessctl
       networkmanagerapplet
-
+      gnupg
       claude-code
    ];
 }
