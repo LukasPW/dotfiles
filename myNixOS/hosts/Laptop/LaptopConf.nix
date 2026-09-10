@@ -96,6 +96,11 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;  # eller pinentry-gtk2, pinentry-qt
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 
