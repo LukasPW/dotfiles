@@ -31,6 +31,13 @@
   #Locale/Keymap in console
   console.keyMap = "sv-latin1";
 
+  # Keychron Keybord functionallity setup
+  hardware.keyboard.qmk.enable = true;
+  hardware.keyboard.qmk.keychronSupport = true;  # pulls in keychron-udev-rules specifically
+  services.udev.extraRules = ''
+    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0666"
+  '';
+
   #wayland Electron fixes
 	environment.sessionVariables = {
  		 NIXOS_OZONE_WL = "1";
@@ -40,10 +47,15 @@
   #XDG Portal Setup
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    config.common.default = "*";
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common.default = [ "gtk" ];
+      hyprland.default = [ "hyprland" "gtk" ];
+    };
   };
-
   #Keyring setup
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;

@@ -94,6 +94,8 @@ hl.config({
 -- hl.exec_cmd(terminal)
 hl.on("hyprland.start", function()
   --hl.exec_cmd("waybar")
+  hl.exec_cmd(
+    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
   hl.exec_cmd("qs")
   hl.exec_cmd("dunst")
   hl.exec_cmd("GDK_BACKEND=wayland nm-applet --indicator")

@@ -19,7 +19,7 @@
 
     # Browsers
     librewolf
-    opera
+    google-chrome
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Terminal / CLI
