@@ -4,6 +4,14 @@
     boot.loader.limine.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.limine.maxGenerations = 5;
+    
+    #Adding windows boot entry
+    boot.loader.limine.extraEntries = ''
+    /Windows
+            protocol: efi
+            path: uuid(DAFC-7503):/EFI/Microsoft/Boot/bootmgfw.efi
+    '';
+
     #Limine config
   boot.loader.limine.style = {
     wallpapers = [ ./Fireplace.png ];   # path to your splash image
