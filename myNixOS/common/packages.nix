@@ -46,6 +46,7 @@
     hyprlock
     hyprpicker
     hyprshot
+    hyprpolkitagent
 
     #Niri Utils
     swaylock
