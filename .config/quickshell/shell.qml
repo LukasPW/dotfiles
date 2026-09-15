@@ -12,6 +12,10 @@ ShellRoot {
         id: lockScreen
     }
 
+    WallpaperPicker {
+        id: wallpicker
+    }
+
     // Exposes `qs ipc call lock lock` on this instance's IPC socket.
     // hypridle.conf's lock_cmd/before_sleep_cmd and the SUPER+L bind in
     // hyprland.lua both call this instead of driving a separate swaylock

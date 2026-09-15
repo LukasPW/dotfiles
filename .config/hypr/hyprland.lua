@@ -96,6 +96,7 @@ hl.on("hyprland.start", function()
   --hl.exec_cmd("waybar")
   hl.exec_cmd(
     "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
+  hl.exec_cmd("systemctl --user start hyprpolkitagent")
   hl.exec_cmd("qs")
   hl.exec_cmd("dunst")
   hl.exec_cmd("GDK_BACKEND=wayland nm-applet --indicator")
@@ -181,8 +182,7 @@ hl.config({
 
   -- https://wiki.hypr.land/Configuring/Variables/#decoration
   decoration = {
-    rounding = 10,
-    rounding_power = 2,
+    rounding = 0,
 
     -- Change transparency of focused and unfocused windows
     active_opacity = 1.0,
@@ -343,6 +343,7 @@ hl.bind(
   mainMod .. " + M",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
 )
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("qs ipc call wallpicker toggle"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
