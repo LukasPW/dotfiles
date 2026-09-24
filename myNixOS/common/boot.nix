@@ -9,7 +9,7 @@
     boot.loader.limine.extraEntries = ''
     /Windows
             protocol: efi
-            path: uuid(DAFC-7503):/EFI/Microsoft/Boot/bootmgfw.efi
+            path: uuid(a2205092-1425-40c1-a76f-e188e6b33e05):/EFI/Microsoft/Boot/bootmgfw.efi
     '';
 
     #Limine config
