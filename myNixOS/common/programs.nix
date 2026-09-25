@@ -65,6 +65,11 @@
   programs.wireshark.enable = true;
   users.users.aswdxtbyyn.extraGroups = ["wireshark" "docker"];
 
+
+  #Keyriung Setup
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+
   #Editor
   programs.neovim = {
 	  enable = true;

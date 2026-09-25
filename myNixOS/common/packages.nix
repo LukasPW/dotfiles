@@ -99,5 +99,10 @@
 
     #Themes
     catppuccin-cursors.mochaDark
+
+
+    #Keyring
+    gnome-keyring
+    seahorse
   ];
 }

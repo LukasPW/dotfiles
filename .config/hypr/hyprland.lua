@@ -96,6 +96,7 @@ hl.on("hyprland.start", function()
   --hl.exec_cmd("waybar")
   hl.exec_cmd(
     "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
+  hl.exec_cmd("gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
   hl.exec_cmd("qs")
   hl.exec_cmd("dunst")
