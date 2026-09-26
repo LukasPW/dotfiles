@@ -150,6 +150,10 @@ services.xserver.videoDrivers = ["amdgpu"];
   		ELECTRON_OZONE_PLATFORM_HINT = "wayland";  # force instead of auto
 	};
 
+services.clamav = {
+  daemon.enable = true;
+  updater.enable = true;
+};
 
 
 

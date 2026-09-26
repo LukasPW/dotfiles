@@ -385,6 +385,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "qs ipc call lock lock"; }
+    Super+Shift+W hotkey-overlay-title="WallpaperPicker" {spawn-sh "qs ipc call wallpicker toggle";}
     Mod+E hotkey-overlay-title="Spawn Thunar File manager" { spawn "thunar"; }
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

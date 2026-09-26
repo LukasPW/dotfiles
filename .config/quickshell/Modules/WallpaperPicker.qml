@@ -1,6 +1,7 @@
 import ".."
 import Quickshell
 import QtQuick
+import QtCore
 import Quickshell.Io
 import Qt.labs.folderlistmodel
 
@@ -19,7 +20,12 @@ PanelWindow {
 
     FolderListModel {
         id: wallpapers
-        folder: "file:///home/aswdxtbyyn/Pictures/wallpapers"
+        // StandardPaths asks Qt's platform integration for the user's
+        // Pictures dir (reads $HOME / XDG user-dirs, not a fixed path), so
+        // this is correct for any user on this machine and identical across
+        // FHS-style distros and NixOS - Qt never assumes a /usr-style
+        // filesystem layout here, just $HOME and the XDG dirs file.
+        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation) + "/wallpapers"
         nameFilters: ["*.png", "*.jpg", "*.jpeg", "*.webp"]
     }
 
@@ -89,7 +95,19 @@ PanelWindow {
 
         function runSelected() {
             const item = carousel.currentItem;
-            proc.command = ["bash", "-c", `awww img "${item.filePath}" && matugen image "${item.filePath}" --source-color-index 0 --mode dark && hyprctl reload`];
+            // awww sets the wallpaper, matugen regenerates the color scheme
+            // from it - then the compositor needs to re-read its config to
+            // pick up matugen's new colors. That reload step is the one
+            // compositor-specific part of this chain, so it's the only bit
+            // gated on Compositor.qml; on an unrecognised compositor it's
+            // just skipped rather than guessed at.
+            let reload = "";
+            if (Compositor.isHyprland)
+                reload = " && hyprctl reload";
+            else if (Compositor.isNiri)
+                reload = " && niri msg action load-config-file";
+
+            proc.command = ["bash", "-c", `awww img "${item.filePath}" && matugen image "${item.filePath}" --source-color-index 0 --mode dark${reload}`];
             proc.running = true;
             root.active = false;
         }

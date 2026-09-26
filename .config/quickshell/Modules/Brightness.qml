@@ -10,12 +10,24 @@ import "../"
 Item {
     id: root
 
-    // Only backlight device present on this machine (see `brightnessctl -m`).
-    readonly property string device: "amdgpu_bl1"
+    // Backlight device name (e.g. "amdgpu_bl1", "intel_backlight") - varies
+    // by GPU/driver, not by distro, so this is discovered at startup rather
+    // than hardcoded. /sys/class/backlight is a kernel sysfs interface, laid
+    // out identically regardless of how the distro packages anything, so
+    // this needs no distro-specific handling. Picks whichever device sorts
+    // first; fine for the common one-backlight-device case this module was
+    // written for, but a machine with two (e.g. a hybrid-GPU laptop) would
+    // need real disambiguation this doesn't attempt.
+    property string device: ""
 
-    // Hidden until the availability check below confirms brightnessctl is
-    // on PATH, so the module doesn't show on machines without it installed.
-    property bool available: false
+    // Set by the availability check below once brightnessctl is confirmed
+    // on PATH. Separate from `available` because that also needs a
+    // discovered `device` - see below.
+    property bool _brightnessctlOk: false
+
+    // Hidden until brightnessctl is on PATH *and* a backlight device was
+    // actually found, so the module doesn't show on machines without either.
+    readonly property bool available: root._brightnessctlOk && root.device.length > 0
 
     property int rawBrightness: 0
     property int maxBrightness: 1
@@ -31,7 +43,20 @@ Item {
 
     Process {
         id: availabilityCheck
-        onExited: (exitCode) => root.available = exitCode === 0
+        onExited: (exitCode) => root._brightnessctlOk = exitCode === 0
+    }
+
+    Process {
+        id: deviceDetect
+        command: ["sh", "-c", "ls /sys/class/backlight 2>/dev/null | head -n1"]
+        stdout: SplitParser {
+            onRead: line => {
+                const name = line.trim();
+                if (name.length)
+                    root.device = name;
+            }
+        }
+        Component.onCompleted: running = true
     }
 
     // Grace period so the popup survives the gap while the pointer travels
@@ -58,9 +83,12 @@ Item {
         setProc.exec(["brightnessctl", "set", Math.round(clamped * 100) + "%"])
     }
 
+    // Empty until deviceDetect resolves `root.device`; both paths re-bind
+    // automatically once it does (plain reactive property, not blockLoading -
+    // no need to force a reload by hand).
     FileView {
         id: brightnessFile
-        path: `/sys/class/backlight/${root.device}/brightness`
+        path: root.device ? `/sys/class/backlight/${root.device}/brightness` : ""
         watchChanges: true
         onLoaded: root.rawBrightness = parseInt(text())
         onFileChanged: reload()
@@ -68,7 +96,7 @@ Item {
 
     FileView {
         id: maxBrightnessFile
-        path: `/sys/class/backlight/${root.device}/max_brightness`
+        path: root.device ? `/sys/class/backlight/${root.device}/max_brightness` : ""
         onLoaded: root.maxBrightness = parseInt(text())
     }
 
