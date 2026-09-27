@@ -344,6 +344,11 @@ hl.bind(
   mainMod .. " + M",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
 )
+
+-- Browser Binds
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("librewolf about:newtab"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("zen about:newtab"))
+
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("qs ipc call wallpicker toggle"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -428,7 +433,6 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind(mainMod .. " + ALT + S", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/screenshots"))
 
 -- PersonalTemporary
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill waybar && waybar"))
 hl.bind(mainMod .. " + ALT + P", hl.dsp.exec_cmd('sh -c \'color=$(hyprpicker -a); dunstify "Picked color" "$color"\''))
 
 --------------------------------
