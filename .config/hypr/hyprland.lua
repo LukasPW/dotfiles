@@ -77,7 +77,7 @@ hl.workspace_rule({ workspace = "10", monitor = "DP-2" })
 ---------------------
 
 -- Set programs that you use
-local terminal = "kitty"
+local terminal = "ghostty"
 local fileManager = "thunar"
 local menu = "rofi -show drun"
 
@@ -107,9 +107,8 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("awww restore")
   hl.exec_cmd("systemctl --user start hyprland-session.target")
-end)
-hl.on("hyprland.shutdown", function()
-  os.execute("systemctl --user stop graphical-session.target")
+  hl.exec_cmd(
+    "env GTK_IM_MODULE=simple ghostty --gtk-single-instance=true --initial-window=false --quit-after-last-window-closed=false")
 end)
 
 -------------------------------

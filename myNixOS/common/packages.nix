@@ -5,7 +5,6 @@
     vim 
     git
     yazi
-    kitty
     librewolf
     spotify
     easyeffects
@@ -21,6 +20,10 @@
     librewolf
     google-chrome
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    #Terminal Emulator
+    ghostty
+    kitty
 
     # Terminal / CLI
     psmisc

@@ -1,36 +1,92 @@
 add_newline = false
+palette = "matugen"
 
-format = "$custom$username$hostname$directory$git_branch $character"
+format = "$os$custom$username$hostname$directory$git_branch$git_status$status $character"
+
+[palettes.matugen]
+primary      = "#{{colors.primary.default.hex_stripped}}"
+on_primary   = "#{{colors.on_primary.default.hex_stripped}}"
+secondary    = "#{{colors.secondary.default.hex_stripped}}"
+surface_tint = "#{{colors.surface_tint.default.hex_stripped}}"
 
 [username]
 show_always = false
-style_user = "#{{colors.primary.default.hex_stripped}}"
+style_user = "primary"
 style_root = "bold red"
 format = "[$user]($style)"
 
 [hostname]
 ssh_only = true
-style = "#{{colors.surface_tint.default.hex_stripped}}"
+style = "surface_tint"
 format = "[@$hostname ]($style)"
 
 [directory]
-style = "#{{colors.primary.default.hex_stripped}}"
+style = "primary"
 format = "[$path]($style)"
 truncation_length = 0
 truncate_to_repo = false
+read_only = " \uf023"
+read_only_style = "red"
 
 [git_branch]
-symbol = ""
-style = "#{{colors.secondary.default.hex_stripped}}"
-format = " ([($branch)]($style))"
+style = "secondary"
+format = " [$branch]($style)"
+
+[git_status]
+style = "#{{colors.tertiary.default.hex_stripped}}"
+format = "( [$all_status$ahead_behind]($style))"
+
+[status]
+disabled = false
+style = "red"
+format = " [✘ $status]($style)"
 
 [character]
-success_symbol = "[➜](bold #{{colors.secondary.default.hex_stripped}})"
+success_symbol = "[➜](bold secondary)"
 error_symbol = "[➜](bold red)"
-vicmd_symbol = "[❮](bold yellow)"
+vimcmd_symbol = "[❮](bold yellow)"
+
+[os]
+disabled = false
+style = "#{{colors.primary.default.hex_stripped}}"
+format = "[$symbol ]($style)"
 
 [custom.logo]
 command = "echo "
-when = "true"
-style ="#{{colors.primary.default.hex_stripped}}"
+when = true
+style = "primary"
 format = "[$output]($style) "
+
+[os.symbols]
+AlmaLinux   = "\uf31d"
+Alpine      = "\uf300"
+Amazon      = "\uf270"
+Android     = "\uf17b"
+Arch        = "\uf303"
+Artix       = "\uf31f"
+CentOS      = "\uf304"
+Debian      = "\uf306"
+EndeavourOS = "\uf322"
+Fedora      = "\uf30a"
+FreeBSD     = "\uf30c"
+Gentoo      = "\uf30d"
+Illumos     = "\uf326"
+Kali        = "\uf327"
+Linux       = "\uf31a"
+Macos       = "\uf302"
+Manjaro     = "\uf312"
+Mint        = "\uf30e"
+NixOS       = "\uf313"
+OpenBSD     = "\uf328"
+openSUSE    = "\uf314"
+Pop         = "\uf32a"
+Raspbian    = "\uf315"
+Redhat      = "\uf316"
+RedHatEnterprise = "\uf316"
+RockyLinux  = "\uf32b"
+Solus       = "\uf32d"
+SUSE        = "\uf314"
+Ubuntu      = "\uf31b"
+Unknown     = "\uf31a"
+Void        = "\uf32e"
+Windows     = "\uf17a"
