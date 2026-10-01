@@ -4,7 +4,7 @@
   networking.nftables.enable = lib.mkDefault true;
   networking.firewall = {
     enable = lib.mkDefault true;
-    allowPing = lib.mkDefault false;
+ #   allowPing = lib.mkDefault false;
   };
   networking.nftables.tables."ping-detect" = {
     family = "inet";

@@ -64,6 +64,7 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
+
   # Setting hyprland-session
   systemd.user.targets.hyprland-session = {
     description = "Hyprland compositor session";
@@ -71,7 +72,6 @@
     wants = [ "graphical-session-pre.target" ];
     after = [ "graphical-session-pre.target" ];
   };
-/*
   # A Test Script that Notifys me when some one pings me
   systemd.user.services.ping-notify = {
     description = "Notify via dunst when a ping hits this machine";
@@ -86,5 +86,4 @@
       RestartSec = 5;
     };
   };
-  */
 }

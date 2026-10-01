@@ -6,5 +6,6 @@
       gnupg
       claude-code
       python3Packages.requests
+      ciscoPacketTracer9
    ];
 }
