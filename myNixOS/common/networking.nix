@@ -6,6 +6,7 @@
     enable = lib.mkDefault true;
  #   allowPing = lib.mkDefault false;
   };
+  /*
   networking.nftables.tables."ping-detect" = {
     family = "inet";
     content = ''
@@ -16,4 +17,5 @@
       }
     '';
   };
+  */
 }
