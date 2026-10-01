@@ -2,7 +2,7 @@
 edit = [
   { run = 'nvim "$@"', block = true }
 ]
-
+# comment :)
 [open]
 rules = [
   { mime = "*", use = "edit" },

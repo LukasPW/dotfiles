@@ -51,27 +51,27 @@ hl.monitor({
   position = "2560x360",
   scale = 1,
 })
---Laptop workspace Rules
-hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
-hl.workspace_rule({ workspace = "2", monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "3", monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "4", monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "5", monitor = "eDP-1" })
 
--- Monitor 1 workspace rules
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
-hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "4", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "5", monitor = "DP-1" })
 
---Monitor 2 workspace rules
-hl.workspace_rule({ workspace = "6", monitor = "DP-2", default = true })
-hl.workspace_rule({ workspace = "7", monitor = "DP-2" })
-hl.workspace_rule({ workspace = "8", monitor = "DP-2" })
-hl.workspace_rule({ workspace = "9", monitor = "DP-2" })
-hl.workspace_rule({ workspace = "10", monitor = "DP-2" })
+--Check Hostname of device
+local f = io.open("/etc/hostname", "r")
+local host = f and f:read("*l") or ""
+if f then f:close() end
+if host == "Desktop-NixOS-BTW" then
+  -- Monitor 1 workspace rules
+  hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
+  hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
+  hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
+  hl.workspace_rule({ workspace = "4", monitor = "DP-1" })
+  hl.workspace_rule({ workspace = "5", monitor = "DP-1" })
 
+  --Monitor 2 workspace rules
+  hl.workspace_rule({ workspace = "6", monitor = "DP-2", default = true })
+  hl.workspace_rule({ workspace = "7", monitor = "DP-2" })
+  hl.workspace_rule({ workspace = "8", monitor = "DP-2" })
+  hl.workspace_rule({ workspace = "9", monitor = "DP-2" })
+  hl.workspace_rule({ workspace = "10", monitor = "DP-2" })
+end
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------

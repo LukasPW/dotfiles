@@ -39,7 +39,7 @@
     aria2
     jq
     fetch
-    spotify-player
+    vis
 
     #3D Printing Utils
     orca-slicer
