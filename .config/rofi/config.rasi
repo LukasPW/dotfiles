@@ -41,6 +41,7 @@ prompt { text-color: @accent; }
 entry {
     placeholder:       "Search apps...";
     placeholder-color: @fg-muted;
+    text-color: @accent;
 }
 
 listview {
