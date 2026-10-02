@@ -162,6 +162,9 @@ hl.on("hyprland.start", function()
 
   if is_systemd then
     start("systemctl --user start hyprland-session.target")
+  else
+    start("dbus-update-activation-environment " .. vars)
+    start("gentoo-pipewire-launcher restart")
   end
 
   start("env GTK_IM_MODULE=simple ghostty --gtk-single-instance=true --initial-window=false --quit-after-last-window-closed=false", "ghostty")
