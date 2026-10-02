@@ -72,6 +72,56 @@ if host == "Desktop-NixOS-BTW" then
   hl.workspace_rule({ workspace = "9", monitor = "DP-2" })
   hl.workspace_rule({ workspace = "10", monitor = "DP-2" })
 end
+
+-------------------------------
+---- SYSTEM DETECTION ----
+-------------------------------
+local function file_exists(path)
+  local f = io.open(path, "r")
+  if f then f:close() return true end
+  return false
+end
+
+local function read_line(path)
+  local f = io.open(path, "r")
+  if not f then return nil end
+  local line = f:read("*l")
+  f:close()
+  return line
+end
+
+-- PID 1 is "systemd" on NixOS, "init" on OpenRC
+local is_systemd = read_line("/proc/1/comm") == "systemd"
+
+-- Is the binary on PATH (or an absolute path that exists)?
+local function has(bin)
+  if bin:sub(1, 1) == "/" then return file_exists(bin) end
+  for dir in (os.getenv("PATH") or ""):gmatch("[^:]+") do
+    if file_exists(dir .. "/" .. bin) then return true end
+  end
+  return false
+end
+
+-- Run cmd only if its program exists. Pass bin explicitly when cmd
+-- starts with env vars or `env`.
+local function start(cmd, bin)
+  bin = bin or cmd:match("^%S+")
+  if has(bin) then hl.exec_cmd(cmd) end
+end
+
+local function start_polkit()
+  if is_systemd then
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    return
+  end
+  for _, p in ipairs({
+    "/usr/libexec/hyprpolkitagent",
+    "/usr/lib/hyprpolkitagent/hyprpolkitagent",
+    "/usr/lib64/hyprpolkitagent/hyprpolkitagent",
+  }) do
+    if file_exists(p) then hl.exec_cmd(p) return end
+  end
+end
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -91,25 +141,32 @@ hl.config({
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 
--- hl.exec_cmd(terminal)
 hl.on("hyprland.start", function()
-  --hl.exec_cmd("waybar")
-  hl.exec_cmd(
-    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
-  hl.exec_cmd("gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
-  hl.exec_cmd("systemctl --user start hyprpolkitagent")
-  hl.exec_cmd("qs")
-  hl.exec_cmd("dunst")
-  hl.exec_cmd("GDK_BACKEND=wayland nm-applet --indicator")
-  hl.exec_cmd("easyeffects --gapplication-service")
-  hl.exec_cmd("blueman-applet")
-  hl.exec_cmd("hypridle")
-  hl.exec_cmd("awww-daemon")
-  hl.exec_cmd("awww restore")
-  hl.exec_cmd("systemctl --user start hyprland-session.target")
-  hl.exec_cmd(
-    "env GTK_IM_MODULE=simple ghostty --gtk-single-instance=true --initial-window=false --quit-after-last-window-closed=false")
+  local vars = "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE"
+  if is_systemd then
+    start("dbus-update-activation-environment --systemd " .. vars)
+  else
+    start("dbus-update-activation-environment " .. vars)
+  end
+
+  start("gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
+  start_polkit()
+  start("qs")
+  start("dunst")
+  start("GDK_BACKEND=wayland nm-applet --indicator", "nm-applet")
+  start("easyeffects --gapplication-service")
+  start("blueman-applet")
+  start("hypridle")
+  start("awww-daemon")
+  start("awww restore")
+
+  if is_systemd then
+    start("systemctl --user start hyprland-session.target")
+  end
+
+  start("env GTK_IM_MODULE=simple ghostty --gtk-single-instance=true --initial-window=false --quit-after-last-window-closed=false", "ghostty")
 end)
+
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----

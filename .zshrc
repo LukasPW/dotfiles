@@ -54,6 +54,7 @@ eval "$(starship init zsh)"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Aliases
+alias hyprstart='dbus-run-session start-hyprland'
 alias nrs="sudo nixos-rebuild switch"
 #alias fnrs="sudo nixos-rebuild switch --flake ~/myNixOS/#Desktop-NixOS-BTW"
 alias hermes='docker exec -it hermes-gateway hermes'

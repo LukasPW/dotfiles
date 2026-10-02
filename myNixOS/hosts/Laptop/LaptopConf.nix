@@ -70,6 +70,11 @@
     variant = "";
   };
 
+  #Virtualisation setup
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;  # optional: pass USB devices into VMs
+
   # Configure console keymap
   console.keyMap = "sv-latin1";
   /*
@@ -93,7 +98,7 @@
   users.users."aswdxtbyyn" = {
     isNormalUser = true;
     description = "LukasPW";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
   };
 
   programs.gnupg.agent = {
@@ -117,45 +122,12 @@
 };
 programs.dconf.enable = true;
 
-
- /*
-  for future home manager
-  gtk = {
-      enable = true;
-      theme = {
-          name = "catppuccin-mocha-mauve-standard+default";
-          package = pkgs.catppuccin-gtk.override {
-              accents = ["mauve"];
-              size = "standard";
-              tweaks = [ "rimless" ];
-              variant = "mocha";
-            };
-        };
-    };
-  */
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-
-/*#hardware.graphics.enable = true;
- hardware.nvidia = {
-   open = true;
-   modesetting.enable = true;
-   powerManagement.enable = true;
- };
- */
 services.xserver.videoDrivers = ["amdgpu"];
 
 	environment.sessionVariables = {
  		 NIXOS_OZONE_WL = "1";
   		ELECTRON_OZONE_PLATFORM_HINT = "wayland";  # force instead of auto
 	};
-
-services.clamav = {
-  daemon.enable = true;
-  updater.enable = true;
-};
-
-
 
 # configuration.nix
 

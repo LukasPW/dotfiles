@@ -79,6 +79,8 @@
     kdePackages.qtdeclarative
     glibc
     tree-sitter
+    go
+    gopls
 
     # GUI applications
     obsidian

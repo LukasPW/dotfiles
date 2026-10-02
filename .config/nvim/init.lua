@@ -90,7 +90,7 @@ require("lazy").setup({
 
   -- Only provides server definitions (cmd, filetypes, root markers); installs nothing.
   { "neovim/nvim-lspconfig" },
-  { "olrtg/nvim-emmet", ft = { "html", "css", "javascriptreact", "typescriptreact" } },
+  { "olrtg/nvim-emmet", ft = { "html", "css", "javascriptreact", "typescriptreact", "gopls" } },
 }, {
   checker = { enabled = false },
 })

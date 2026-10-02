@@ -58,8 +58,6 @@
   # Gaming / virtualization
   programs.steam.enable = true;
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "aswdxtbyyn" ];
 
   # Security tooling
   programs.wireshark.enable = true;
