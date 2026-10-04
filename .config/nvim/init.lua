@@ -15,7 +15,6 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 vim.o.termguicolors = true
-vim.o.completeopt = "menuone,noselect,popup"
 vim.o.showmode = false
 
 -- Bootstrap lazy.nvim
@@ -31,6 +30,21 @@ require("lazy").setup({
   { "echasnovski/mini.base16", lazy = false, priority = 1000 },
   { "echasnovski/mini.statusline", opts = {} },
   {
+    "saghen/blink.cmp",
+    version = "1.*", -- downloads a prebuilt fuzzy-matcher binary
+    dependencies = { "rafamadriz/friendly-snippets" },
+    lazy = false,
+    opts = {
+      keymap = { preset = "enter" }, -- same as LazyVim: <CR> accepts
+      completion = {
+        documentation = { auto_show = true, auto_show_delay_ms = 200 },
+        ghost_text = { enabled = true },
+      },
+      sources = { default = { "lsp", "path", "snippets", "buffer" } },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     lazy = false,         -- doesn't support lazy-loading
@@ -40,7 +54,7 @@ require("lazy").setup({
       require("nvim-treesitter").install({
         "c", "cpp", "lua", "nix", "qmljs",
         "html", "css", "javascript",
-        "bash", "json", "markdown", "markdown_inline",
+        "bash", "json", "markdown", "markdown_inline", "go",
       })
 
       -- Enable treesitter highlighting + indent for any buffer that has a parser
@@ -90,7 +104,7 @@ require("lazy").setup({
 
   -- Only provides server definitions (cmd, filetypes, root markers); installs nothing.
   { "neovim/nvim-lspconfig" },
-  { "olrtg/nvim-emmet", ft = { "html", "css", "javascriptreact", "typescriptreact", "gopls" } },
+  { "olrtg/nvim-emmet", ft = { "html", "css" } },
 }, {
   checker = { enabled = false },
 })
@@ -117,17 +131,9 @@ vim.lsp.config("lua_ls", {
   settings = { Lua = { diagnostics = { globals = { "vim", "Snacks" } } } },
 })
 vim.lsp.config("qmlls", { cmd = { "qmlls", "-E" } })
-vim.lsp.enable({ "clangd", "lua_ls", "emmet_language_server", "qmlls" })
+vim.lsp.enable({ "clangd", "lua_ls", "emmet_language_server", "qmlls", "gopls" })
 
 vim.diagnostic.config({ virtual_text = true })
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client and client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    end
-  end,
-})
 -- Built-in LSP keys: K hover, grn rename, gra code action, grr references,
 -- gri implementation, Ctrl-] definition, [d / ]d diagnostics. See :help lsp-defaults
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format buffer" })
