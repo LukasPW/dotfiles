@@ -56,7 +56,11 @@
 
 
   # Gaming / virtualization
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];  # gives you GE-Proton as a fallback
+  };
+  hardware.graphics.enable = true;  # the steam module turns on enable32Bit for you
   virtualisation.docker.enable = true;
 
   # Security tooling

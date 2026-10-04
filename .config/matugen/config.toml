@@ -3,6 +3,7 @@ mode = "dark"
 [templates.hyprland]
 input_path = "~/.config/matugen/templates/hyprland-colors.lua"
 output_path = "~/.config/hypr/colors.lua"
+post_hook = "hyprctl reload"
 [templates.waybar]
 input_path = "~/.config/matugen/templates/waybar-colors.css"
 output_path = "~/.config/waybar/colors.css"
