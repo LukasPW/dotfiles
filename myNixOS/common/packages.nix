@@ -81,6 +81,8 @@
     tree-sitter
     go
     gopls
+    man-pages
+    man-pages-posix
 
     # GUI applications
     obsidian
