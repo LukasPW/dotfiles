@@ -5,7 +5,8 @@ import "../"
 
 // Bar workspace switcher - compositor-agnostic front end.
 //
-// The two compositors are rendered differently on purpose:
+// The supported compositors are rendered differently because of design differences
+// in workspace handling:
 //
 //   - Hyprland: a fixed row of slots startWs..startWs+wScount-1, always
 //     present as click targets (identical to the original Hyprland-only
@@ -13,11 +14,20 @@ import "../"
 //     come from Wm/HyprlandService.qml, which is an unchanged lift of the
 //     legacy logic.
 //
+//   - Sway/swayfx: shares Hyprland's fixed slot row. Sway workspace
+//     numbers are global (not per-monitor) like Hyprland's, and Sway only
+//     lists a workspace while it has windows or is visible on an output,
+//     which gives the same populated/empty signal the bar dims on.
+//     State and switching come from Wm/SwayService.qml via Quickshell.I3;
+//     clicking a slot runs `workspace number N`, which creates the
+//     workspace on demand. Named-only workspaces (no leading number,
+//     e.g. "web") report number -1 and don't map to any slot.
+//
 //   - niri: dynamic. niri has no fixed workspace count, so the bar renders
 //     one entry per live workspace (from Wm/NiriService.qml, streamed off
 //     $NIRI_SOCKET), appearing/disappearing as niri adds/removes them.
 //
-// Colouring is the same in both cases:
+// Colouring is the same in all cases:
 //   Theme.primary   focused   /   Theme.secondary populated   /   Theme.outline empty
 //
 // On an unrecognised compositor no backend loads and nothing renders.
@@ -25,15 +35,15 @@ RowLayout {
     id: workspaces
     spacing: 4
 
-    // Hyprland only - the fixed slot range. Ignored under niri.
+    // Hyprland and Sway - the fixed slot range. Ignored under niri.
     property int startWs: 1
     property int wScount: 10
 
-    // Active backend instance (HyprlandService / NiriService), or null.
+    // Active backend instance (HyprlandService / NiriService / SwayService), or null.
     readonly property var svc: backendLoader.item
 
     // niri workspace indices are per-monitor, so the backend needs to know
-    // which output this bar belongs to. Ignored by the Hyprland backend.
+    // which output this bar belongs to. Ignored by the Hyprland and Sway backends.
     readonly property string outputName: (QsWindow.window && QsWindow.window.screen) ? QsWindow.window.screen.name : ""
 
     Loader {
@@ -43,6 +53,9 @@ RowLayout {
                 return "Wm/HyprlandService.qml";
             if (Compositor.isNiri)
                 return "Wm/NiriService.qml";
+            if (Compositor.isSway) {
+                return "Wm/SwayService.qml";
+            }
             return "";
         }
     }
@@ -54,9 +67,10 @@ RowLayout {
         when: workspaces.svc !== null
     }
 
-    // --- Hyprland: fixed slot row (unchanged legacy behaviour) ---
+    // --- Fixed slot row: Hyprland and Sway ---
+    // Both use global workspace numbers, one delegate serves both.
     Repeater {
-        model: Compositor.isHyprland ? workspaces.wScount : 0
+        model: (Compositor.isHyprland || Compositor.isSway) ? workspaces.wScount : 0
 
         Text {
             readonly property int wsNum: index + workspaces.startWs

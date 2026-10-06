@@ -56,6 +56,7 @@
 
     #QuickShell and related stuff
     quickshell
+    kdePackages.qtdeclarative
 
     # Wayland utilities
     grim
@@ -76,7 +77,6 @@
     gdb
     python3
     jdk
-    kdePackages.qtdeclarative
     glibc
     tree-sitter
     go

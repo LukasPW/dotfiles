@@ -20,6 +20,7 @@
             ./hosts/Laptop/LaptopConf.nix
             ./hosts/Laptop/laptopPackages.nix
             ./hosts/Laptop/hardware-configuration.nix
+            ./common/swayfx.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];
         };

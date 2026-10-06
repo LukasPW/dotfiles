@@ -417,7 +417,7 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("zen about:newtab"))
 
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("qs ipc call wallpicker toggle"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " +SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())       -- dwindle
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle

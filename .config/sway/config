@@ -1,0 +1,185 @@
+# Sway / swayfx config - port of hyprland.lua.
+# Reference: man 5 sway, man 5 sway-input, man 5 sway-output
+# Check for errors without restarting: sway --validate
+
+### Variables ###########################################################
+set $mod Super
+set $terminal ghostty
+set $fileManager thunar
+set $menu rofi -show drun
+
+# Colour palette ($primary, $tertiary, $surface, ...). Must come before
+# anything that uses these variables.
+include ~/.config/sway/colors.conf
+
+### Outputs #############################################################
+# Rules for outputs that aren't connected are ignored, so one list covers
+# every machine, same as the hl.monitor() list. Unlisted outputs get their
+# preferred mode and an automatic position (Hyprland's catch-all rule).
+#
+# Sway has no output mirroring. For HDMI-A-1 mirroring eDP-1, run
+# `wl-mirror eDP-1` and fullscreen that window on the HDMI output.
+output eDP-1    mode 1920x1080@60Hz  position 0 0      scale 1
+output DP-1     mode 2560x1440@144Hz position 0 0      scale 1
+output DP-2     mode 1920x1080@60Hz  position 2560 360 scale 1
+
+### Per-machine overrides ###############################################
+# Replaces the /etc/hostname check in hyprland.lua. The path is expanded
+# like a shell word, so this loads hosts/<hostname>.conf. Each machine
+# needs a file there (an empty one is fine), or sway reports an error.
+include "~/.config/sway/hosts/$(cat /etc/hostname).conf""
+
+### Autostart ###########################################################
+# Everything from the hyprland.start handler lives in this script, since
+# sway config has no conditionals. `exec` runs once; `exec_always` would
+# re-run on every reload and duplicate the bar, daemons, etc.
+exec ~/.config/sway/autostart.sh
+exec awww-daemon
+exec awww -restore
+exec qs
+exec easyeffects
+
+### Input ###############################################################
+input type:keyboard {
+    xkb_layout se
+    xkb_numlock enabled
+}
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0
+}
+
+input type:touchpad {
+    accel_profile flat
+    natural_scroll disabled
+}
+
+# Laptop touchpad. Verify the identifier with `swaymsg -t get_inputs`.
+input "1739:52781:SYNA2BA6:00_06CB:CE2D_Touchpad" {
+    pointer_accel 0
+    dwt enabled
+    scroll_method two_finger
+    scroll_factor 0.3
+}
+
+# 3-finger horizontal swipe switches workspaces (hl.gesture).
+bindgesture swipe:3:left  workspace next_on_output
+bindgesture swipe:3:right workspace prev_on_output
+
+### Look and feel #######################################################
+# Also exports XCURSOR_THEME/XCURSOR_SIZE to programs sway starts.
+seat * xcursor_theme catppuccin-mocha-dark-cursors 20
+
+# Sway adds outer gaps on top of inner gaps at screen edges, so these
+# won't match Hyprland pixel-for-pixel. Tune by eye.
+gaps inner 20
+gaps outer 15
+
+default_border pixel 2
+default_floating_border pixel 2
+
+# Sway has no gradient borders, so the active border uses $primary only.
+# With pixel borders only the last column (child_border) is visible.
+#                       border           background       text        indicator  child_border
+client.focused          $primary         $primary         $background $tertiary  $primary
+client.focused_inactive $inactive_border $inactive_border $primary    $surface   $inactive_border
+client.unfocused        $inactive_border $inactive_border $primary    $surface   $inactive_border
+
+# No bar block on purpose: Quickshell is the bar. Don't copy the `bar { }`
+# block from /etc/sway/config or swaybar will show up as well.
+
+### Keybindings #########################################################
+bindsym $mod+Return exec $terminal
+bindsym $mod+c kill
+bindsym $mod+m exit
+
+# Browsers
+bindsym $mod+b       exec librewolf about:newtab
+bindsym $mod+Shift+b exec zen about:newtab
+
+bindsym $mod+Shift+w exec qs ipc call wallpicker toggle
+bindsym $mod+e exec $fileManager
+bindsym $mod+Shift+v floating toggle
+bindsym $mod+d exec $menu
+# Closest equivalent of dwindle's togglesplit. Sway has no pseudotile.
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+j layout toggle split
+
+# Lock (Quickshell lock screen)
+bindsym $mod+l exec qs ipc call lock lock
+# Lock on lid close; --locked keeps it active while locked (bindl).
+bindswitch --locked lid:on exec qs ipc call lock lock
+
+# Move focus
+bindsym $mod+Left  focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up    focus up
+bindsym $mod+Down  focus down
+
+# Move the focused window (closest to Hyprland's swap)
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Down  move down
+
+# Workspaces. `number` matches numbered names and creates on demand,
+# same as the bar's activate().
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Scratchpad - sway's stand-in for the "magic" special workspace.
+# Windows sent there float; $mod+s cycles through them.
+bindsym $mod+s       scratchpad show
+bindsym $mod+Shift+s move scratchpad
+
+# Scroll through workspaces on the current output
+bindsym --whole-window $mod+button5 workspace next_on_output
+bindsym --whole-window $mod+button4 workspace prev_on_output
+
+# $mod + left drag moves, $mod + right drag resizes (tiled windows too)
+floating_modifier $mod normal
+
+# Media keys. Key repeat is on by default in sway.
+bindsym --locked XF86AudioRaiseVolume  exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute      exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl -e4 -n2 set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -e4 -n2 set 5%-
+
+bindsym --locked XF86AudioNext  exec playerctl next
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioPlay  exec playerctl play-pause
+bindsym --locked XF86AudioPrev  exec playerctl previous
+
+# Screenshot (hyprshot -m region replacement): region to file + clipboard
+bindsym $mod+Mod1+s exec mkdir -p ~/Pictures/screenshots && grim -g "$(slurp)" - | tee ~/Pictures/screenshots/$(date +%F_%H-%M-%S).png | wl-copy
+
+# Colour picker - hyprpicker runs fine on wlroots compositors
+bindsym $mod+Mod1+p exec sh -c 'c=$(hyprpicker -a); dunstify "Picked color" "$c"'
+
+### Window rules ########################################################
+# The Hyprland rules don't need porting: sway ignores maximize requests
+# while tiling, the XWayland drag fix is Hyprland-specific, and
+# hyprland-run doesn't exist here.

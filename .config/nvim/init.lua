@@ -130,7 +130,10 @@ vim.api.nvim_create_autocmd("Signal", {
 vim.lsp.config("lua_ls", {
   settings = { Lua = { diagnostics = { globals = { "vim", "Snacks" } } } },
 })
-vim.lsp.config("qmlls", { cmd = { "qmlls", "-E" } })
+vim.lsp.config("qmlls", { 
+  cmd = { "qmlls", "-E" },
+  root_markers = { ".qmlls.ini", "shell.qml", ".git"}
+})
 vim.lsp.enable({ "clangd", "lua_ls", "emmet_language_server", "qmlls", "gopls" })
 
 vim.diagnostic.config({ virtual_text = true })
