@@ -134,7 +134,7 @@ end
 ---------------------
 
 -- Set programs that you use
-local terminal = "ghostty"
+local terminal = "kitty"
 local fileManager = "thunar"
 local menu = "rofi -show drun"
 

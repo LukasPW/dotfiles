@@ -1,3 +1,5 @@
+{pkgs, ...}:
+{
 programs.sway = {
   enable = true;
   package = pkgs.swayfx;
@@ -13,5 +15,6 @@ programs.sway = {
   # Replaces the defaults (swaylock, foot, dmenu), which you don't use.
   extraPackages = with pkgs; [ swayidle grim slurp wl-clipboard wl-mirror ];
 
-  extraOptions = [ "--unsupported-gpu" ];
+  #extraOptions = [ "--unsupported-gpu" ];
 };
+}
