@@ -73,6 +73,7 @@
     after = [ "graphical-session-pre.target" ];
   };
   # A Test Script that Notifys me when some one pings me
+  /*
   systemd.user.services.ping-notify = {
     description = "Notify via dunst when a ping hits this machine";
     wantedBy = [ "default.target" ];
@@ -86,4 +87,5 @@
       RestartSec = 5;
     };
   };
+  */
 }

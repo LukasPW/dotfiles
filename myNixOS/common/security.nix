@@ -21,6 +21,7 @@
     socat
     netcat
     wireshark
+    macof
 
     # SMB / Windows / AD enumeration
     enum4linux
