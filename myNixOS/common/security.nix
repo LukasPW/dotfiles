@@ -21,7 +21,6 @@
     socat
     netcat
     wireshark
-    macof
 
     # SMB / Windows / AD enumeration
     enum4linux
@@ -53,5 +52,6 @@
 
     # Reverse enginering
     ghidra
+    binwalk
   ];
 }

@@ -4,7 +4,7 @@
 
 ### Variables ###########################################################
 set $mod Super
-set $terminal ghostty
+set $terminal kitty
 set $fileManager thunar
 set $menu rofi -show drun
 
