@@ -20,8 +20,6 @@ include ~/.config/sway/colors.conf
 # Sway has no output mirroring. For HDMI-A-1 mirroring eDP-1, run
 # `wl-mirror eDP-1` and fullscreen that window on the HDMI output.
 output eDP-1    mode 1920x1080@60Hz  position 0 0      scale 1
-output DP-1     mode 2560x1440@144Hz position 0 0      scale 1
-output DP-2     mode 1920x1080@60Hz  position 2560 360 scale 1
 
 ### Per-machine overrides ###############################################
 # Replaces the /etc/hostname check in hyprland.lua. The path is expanded
@@ -29,16 +27,28 @@ output DP-2     mode 1920x1080@60Hz  position 2560 360 scale 1
 # needs a file there (an empty one is fine), or sway reports an error.
 include "~/.config/sway/hosts/$(cat /etc/hostname).conf""
 
-### Autostart ###########################################################
-# Everything from the hyprland.start handler lives in this script, since
-# sway config has no conditionals. `exec` runs once; `exec_always` would
-# re-run on every reload and duplicate the bar, daemons, etc.
-exec ~/.config/sway/autostart.sh
-exec awww-daemon
-exec awww -restore
-exec qs
-exec easyeffects
+### Autostart (Gentoo / OpenRC) #########################################
+# Each exec starts concurrently. Order-sensitive steps are chained in one sh -c.
 
+# Export the session env to D-Bus first, so D-Bus-activated services
+# (portals, keyring) see WAYLAND_DISPLAY etc. Then start the keyring.
+exec sh -c 'dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP; gnome-keyring-daemon --start --components=pkcs11,secrets,ssh'
+
+# Start PipeWire, wait for its socket (max ~10 s), then start easyeffects
+exec sh -c 'gentoo-pipewire-launcher restart & i=0; until [ -S "$XDG_RUNTIME_DIR/pipewire-0" ] || [ $i -ge 50 ]; do sleep 0.2; i=$((i+1)); done; exec easyeffects --gapplication-service'
+
+# Polkit agent. Check the path with: qlist hyprpolkitagent | grep -v share
+exec /usr/libexec/hyprpolkitagent
+
+# Wallpaper: wait for the daemon before restoring
+exec sh -c 'awww-daemon & until awww query >/dev/null 2>&1; do sleep 0.1; done; awww restore'
+
+exec qs
+exec dunst
+exec env GDK_BACKEND=wayland nm-applet --indicator
+exec blueman-applet
+exec hypridle
+exec env GTK_IM_MODULE=simple ghostty --gtk-single-instance=true --initial-window=false --quit-after-last-window-closed=false
 ### Input ###############################################################
 input type:keyboard {
     xkb_layout se
@@ -178,8 +188,3 @@ bindsym $mod+Mod1+s exec mkdir -p ~/Pictures/screenshots && grim -g "$(slurp)" -
 
 # Colour picker - hyprpicker runs fine on wlroots compositors
 bindsym $mod+Mod1+p exec sh -c 'c=$(hyprpicker -a); dunstify "Picked color" "$c"'
-
-### Window rules ########################################################
-# The Hyprland rules don't need porting: sway ignores maximize requests
-# while tiling, the XWayland drag fix is Hyprland-specific, and
-# hyprland-run doesn't exist here.
