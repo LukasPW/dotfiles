@@ -53,6 +53,7 @@
 
     #Niri Utils
     swaylock
+     xwayland-satellite
 
     #QuickShell and related stuff
     quickshell

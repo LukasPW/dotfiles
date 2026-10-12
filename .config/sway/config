@@ -105,8 +105,7 @@ bindsym $mod+c kill
 bindsym $mod+m exit
 
 # Browsers
-bindsym $mod+b       exec librewolf about:newtab
-bindsym $mod+Shift+b exec zen about:newtab
+bindsym $mod+b       exec librewolf-bin about:newtab
 
 bindsym $mod+Shift+w exec qs ipc call wallpicker toggle
 bindsym $mod+e exec $fileManager
