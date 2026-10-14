@@ -95,6 +95,7 @@ output "DP-1" {
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
+    focus-at-startup
 
     // Position of the output in the global coordinate space.
     // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
@@ -120,8 +121,8 @@ output "eDP-1" {
     scale 1
 }
 cursor {
-    xcursor-theme "catppuccin-mocha-dark-cursors"
-    xcursor-size 25
+    xcursor-theme "layan-cursors"
+    xcursor-size 24
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -284,7 +285,7 @@ spawn-at-startup "dunst"
 spawn-at-startup "nm-applet" "--indicator"
 spawn-at-startup "easyeffects" "--gapplication-service"
 spawn-at-startup "blueman-applet"
-spawn-at-startup "swayidle"
+//spawn-at-startup "swayidle"
 spawn-sh-at-startup "swayidle -w timeout 300 'qs ipc call lock lock' before-sleep 'qs ipc call lock lock'"
 
 

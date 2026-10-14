@@ -107,7 +107,8 @@
     ani-cli
 
     #Themes
-    catppuccin-cursors.mochaDark
+    #catppuccin-cursors.mochaDark
+    layan-cursors
 
 
     #Keyring
