@@ -60,6 +60,19 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  #Polkit Service (More gnome Dependencies :/ )
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome authentication agent";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+    };
+  };
+
   # USB block auto mounting
   services.gvfs.enable = true;
   services.udisks2.enable = true;
