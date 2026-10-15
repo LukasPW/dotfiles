@@ -32,6 +32,7 @@
             ./hosts/desktopPC/DestopConf.nix
             ./hosts/desktopPC/DesktopPackages.nix
             ./hosts/desktopPC/hardware-configuration.nix
+            ./common/mangowm.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];
         };
