@@ -4,8 +4,8 @@
 # Started by mango via: exec-once=sh ~/.config/mango/autostart.sh
 
 # --- Debugging: uncomment both lines, log in, then read the log file ---
-# exec >"$HOME/.cache/mango-autostart.log" 2>&1
-# set -x
+exec >"$HOME/.cache/mango-autostart.log" 2>&1
+set -x
 
 # ---------------------------------------------------------------------
 # Helpers
@@ -60,7 +60,7 @@ fi
 if [ "$is_systemd" = "yes" ]; then
   # NixOS: polkit-gnome runs as a systemd user service,
   # started by graphical-session.target. Nothing to do here.
-  :
+  systemctl --user start mango-session.target
 else
   # Gentoo / OpenRC: start polkit-gnome directly
   for path in /usr/libexec/polkit-gnome-authentication-agent-1 \
