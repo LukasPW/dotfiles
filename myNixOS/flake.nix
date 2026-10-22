@@ -19,6 +19,7 @@
             ./common/mangowm.nix
             ./common/windowmaker.nix
             ./common/security.nix
+            ./hosts/Laptop/Packettracer.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];
         };
