@@ -19,7 +19,6 @@
     # Browsers
     librewolf
     google-chrome
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     #Terminal Emulator
     ghostty
@@ -100,6 +99,7 @@
     webcord
     blender
     xarchiver
+    tumbler
 
     #Fun
     pipes

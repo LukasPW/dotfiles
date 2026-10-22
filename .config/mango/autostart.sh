@@ -1,7 +1,7 @@
 #!/bin/sh
 #more Claude BS FFS
 # ~/.config/mango/autostart.sh
-# Started by mango via: exec-once=sh ~/.config/mango/autostart.sh
+# Started by mango via: exec_once=sh ~/.config/mango/autostart.sh
 
 # --- Debugging: uncomment both lines, log in, then read the log file ---
 exec >"$HOME/.cache/mango-autostart.log" 2>&1
