@@ -7,6 +7,8 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  #ssh setup
+  services.openssh.enable = true;
   networking.hostName = "Laptop-NixOS-BTW"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

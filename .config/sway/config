@@ -25,7 +25,6 @@ output eDP-1    mode 1920x1080@60Hz  position 0 0      scale 1
 # Replaces the /etc/hostname check in hyprland.lua. The path is expanded
 # like a shell word, so this loads hosts/<hostname>.conf. Each machine
 # needs a file there (an empty one is fine), or sway reports an error.
-include "~/.config/sway/hosts/$(cat /etc/hostname).conf""
 
 ### Autostart (Gentoo / OpenRC) #########################################
 # Each exec starts concurrently. Order-sensitive steps are chained in one sh -c.
