@@ -64,7 +64,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # Aliases
 alias swaystart='XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway XDG_SESSION_TYPE=wayland QT_QPA_PLATFORMTHEME=gtk3 dbus-run-session sway'
 alias hyprstart='dbus-run-session start-hyprland'
-alias mangoini='XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=mango XDG_SESSION_DESKTOP=mango dbus-run-session mango'
+alias mangoini='XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=mango dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP=mango dbus-run-session mango'
 alias nrs="sudo nixos-rebuild switch"
 #alias fnrs="sudo nixos-rebuild switch --flake ~/myNixOS/#Desktop-NixOS-BTW"
 alias hermes='docker exec -it hermes-gateway hermes'
