@@ -1,9 +1,9 @@
 [opener]
 edit = [
-  { run = 'nvim "$@"', block = true }
+  { run = "nvim %s", block = true }
 ]
 # comment :)
 [open]
 rules = [
-  { mime = "*", use = "edit" },
+  { url = "*", use = "edit" },
 ]
