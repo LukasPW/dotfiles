@@ -1,20 +1,20 @@
  { config, pkgs, inputs, ... }: 
  {
   environment.systemPackages = with pkgs; [
-    fastfetch
-    vim 
-    git
-    yazi
-    librewolf
-    spotify
-    easyeffects
-    matugen
-    starship
-    waybar
-    rofi
     awww
-    cmatrix
     cava
+    cmatrix
+    easyeffects
+    fastfetch
+    git
+    librewolf
+    matugen
+    rofi
+    spotify
+    starship
+    vim 
+    waybar
+    yazi
 
     # Browsers
     librewolf
