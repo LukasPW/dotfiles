@@ -41,14 +41,22 @@ bindkey '^I' expand-or-complete
 
 # Plugin sourcing (guarded — only sources if the file exists,
 # so this works unchanged on both Arch and NixOS)
+# Legacy Arch Paths :)
 [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#gentoo setup
 [[ -f /usr/share/fzf/completion.zsh ]] && \
-  source /usr/share/fzf/completion.zsh
+  source <(fzf --zsh)
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && \
   source /usr/share/fzf/key-bindings.zsh
+[[ -f /usr/share/zsh/site-functions/zsh-autosuggestions.zsh ]] && \
+  source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
+
+[[ -f /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh ]] && \
+  source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 
 eval "$(starship init zsh)"
 export PATH="$HOME/.local/bin:$PATH"
@@ -56,6 +64,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # Aliases
 alias swaystart='XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway XDG_SESSION_TYPE=wayland QT_QPA_PLATFORMTHEME=gtk3 dbus-run-session sway'
 alias hyprstart='dbus-run-session start-hyprland'
+alias mangoini='XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=mango XDG_SESSION_DESKTOP=mango dbus-run-session mango'
 alias nrs="sudo nixos-rebuild switch"
 #alias fnrs="sudo nixos-rebuild switch --flake ~/myNixOS/#Desktop-NixOS-BTW"
 alias hermes='docker exec -it hermes-gateway hermes'
