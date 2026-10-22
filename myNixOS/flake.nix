@@ -21,6 +21,7 @@
             ./hosts/Laptop/laptopPackages.nix
             ./hosts/Laptop/hardware-configuration.nix
             ./common/swayfx.nix
+            ./common/mangowm.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];
         };
