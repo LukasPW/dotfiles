@@ -2,7 +2,7 @@
   description = "My multi machine system flake :)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-pt.url = "github:NixOS/nixpkgs/b1b875982b17dabde9b4a37f3e229e74913e6db3";
   };
 
