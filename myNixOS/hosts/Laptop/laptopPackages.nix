@@ -5,6 +5,5 @@
       networkmanagerapplet
       gnupg
       python3Packages.requests
-      ciscoPacketTracer9
    ];
 }
