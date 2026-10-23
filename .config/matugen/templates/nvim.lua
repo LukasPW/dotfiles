@@ -15,7 +15,7 @@ require("mini.base16").setup({
     base0C = "{{colors.tertiary_fixed_dim.default.hex}}",
     base0D = "{{colors.primary_fixed_dim.default.hex}}",
     base0E = "{{colors.secondary_fixed_dim.default.hex}}",
-    base0F = "{{colors.primary.default.hex}}",
+    base0F = "{{colors.on_surface_variant.default.hex}}",
   },
 })
 vim.g.colors_name = "matugen"
