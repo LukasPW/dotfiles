@@ -4,13 +4,14 @@ import QtQuick
 import QtCore
 import Quickshell.Io
 import Qt.labs.folderlistmodel
+import Quickshell.Wayland
 
 PanelWindow {
     id: root
     property bool active: false
     visible: active
-    focusable: active
-
+    //focusable: active
+WlrLayershell.keyboardFocus: active ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
     // Two-step flow: pick a wallpaper, then - if matugen finds more than
     // one candidate source color - pick which one drives the scheme.
     // If there's only one candidate (or the probe fails, e.g. an older
