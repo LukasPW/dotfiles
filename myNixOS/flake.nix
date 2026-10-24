@@ -3,7 +3,6 @@
 
   inputs = {
   nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-pt.url = "github:NixOS/nixpkgs/b1b875982b17dabde9b4a37f3e229e74913e6db3";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -17,9 +16,7 @@
             ./hosts/Laptop/laptopPackages.nix
             ./hosts/Laptop/hardware-configuration.nix
             ./common/mangowm.nix
-            ./common/windowmaker.nix
             ./common/security.nix
-            ./hosts/Laptop/Packettracer.nix
             { nixpkgs.hostPlatform = "x86_64-linux";}
           ];
         };
