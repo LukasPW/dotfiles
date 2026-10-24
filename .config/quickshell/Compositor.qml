@@ -12,6 +12,10 @@ import Quickshell
 QtObject {
     // "hyprland" | "niri" | "sway" | "unknown"
     readonly property string id: {
+
+        if (Quickshell.env("MANGO_INSTANCE_SIGNATURE")){
+          return "mango";
+        }
         if (Quickshell.env("SWAYSOCK")) {
           return "sway";
         }
@@ -20,6 +24,10 @@ QtObject {
         if (Quickshell.env("NIRI_SOCKET"))
             return "niri";
         const xdg = (Quickshell.env("XDG_CURRENT_DESKTOP") || "").toLowerCase();
+
+        if (xdg.includes("mango")) {
+            return "mango";
+        }
         if (xdg.includes("sway")) {
             return "sway";
         }
@@ -30,6 +38,7 @@ QtObject {
         return "unknown";
     }
 
+    readonly property bool isMango: id === "mango"
     readonly property bool isSway: id === "sway"
     readonly property bool isHyprland: id === "hyprland"
     readonly property bool isNiri: id === "niri"

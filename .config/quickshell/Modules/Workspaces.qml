@@ -27,6 +27,13 @@ import "../"
 //     one entry per live workspace (from Wm/NiriService.qml, streamed off
 //     $NIRI_SOCKET), appearing/disappearing as niri adds/removes them.
 //
+//   - Mango: tags, A fixed row of slots like Hyprland/Sway,
+//     but tags are per-monitor and several can be selected at once, so the
+//     backend exposes selectedNumbers (array) instead of a single
+//     focusedNumber. State comes from `mmsg watch all-monitors` via
+//     Wm/MangoService.qml, which also provides the current layout symbol,
+//     shown after the slots.
+//
 // Colouring is the same in all cases:
 //   Theme.primary   focused   /   Theme.secondary populated   /   Theme.outline empty
 //
@@ -36,14 +43,19 @@ RowLayout {
     spacing: 4
 
     // Hyprland and Sway - the fixed slot range. Ignored under niri.
+    // Mango uses its own tag count instead of wScount.
     property int startWs: 1
     property int wScount: 10
 
-    // Active backend instance (HyprlandService / NiriService / SwayService), or null.
+    // Active backend instance (HyprlandService / NiriService / SwayService / MangoService), or null.
     readonly property var svc: backendLoader.item
 
-    // niri workspace indices are per-monitor, so the backend needs to know
-    // which output this bar belongs to. Ignored by the Hyprland and Sway backends.
+    // How many fixed slots to draw: Mango's tag count, wScount for Hyprland/Sway, none for niri.
+    readonly property int slotCount: Compositor.isMango ? (svc ? svc.tagCount : 9) : ((Compositor.isHyprland || Compositor.isSway) ? wScount : 0)
+
+    // niri workspace indices and Mango tags are per-monitor, so the backend
+    // needs to know which output this bar belongs to. Ignored by the Hyprland
+    // and Sway backends.
     readonly property string outputName: (QsWindow.window && QsWindow.window.screen) ? QsWindow.window.screen.name : ""
 
     Loader {
@@ -56,6 +68,8 @@ RowLayout {
             if (Compositor.isSway) {
                 return "Wm/SwayService.qml";
             }
+            if (Compositor.isMango)
+                return "Wm/MangoService.qml";
             return "";
         }
     }
@@ -67,14 +81,15 @@ RowLayout {
         when: workspaces.svc !== null
     }
 
-    // --- Fixed slot row: Hyprland and Sway ---
-    // Both use global workspace numbers, one delegate serves both.
+    // --- Fixed slot row: Hyprland, Sway and Mango ---
+    // One delegate serves all three. Backends that can have several active
+    // slots (Mango) expose selectedNumbers; the others fall back to focusedNumber.
     Repeater {
-        model: (Compositor.isHyprland || Compositor.isSway) ? workspaces.wScount : 0
+        model: workspaces.slotCount
 
         Text {
             readonly property int wsNum: index + workspaces.startWs
-            readonly property bool isActive: workspaces.svc ? workspaces.svc.focusedNumber === wsNum : false
+            readonly property bool isActive: workspaces.svc ? (workspaces.svc.selectedNumbers ? workspaces.svc.selectedNumbers.indexOf(wsNum) >= 0 : workspaces.svc.focusedNumber === wsNum) : false
             readonly property bool populated: workspaces.svc ? workspaces.svc.populatedNumbers.indexOf(wsNum) >= 0 : false
 
             text: wsNum
@@ -113,6 +128,18 @@ RowLayout {
                 onClicked: if (workspaces.svc)
                     workspaces.svc.activate(modelData.idx)
             }
+        }
+    }
+
+    // --- Mango: current layout symbol (T, S, DW, ...) ---
+    Text {
+        visible: Compositor.isMango && workspaces.svc !== null
+        text: workspaces.svc ? workspaces.svc.layout : ""
+        color: Theme.secondary
+        font {
+            pixelSize: 14
+            bold: true
+            family: "Maple Mono NF CN"
         }
     }
 }
