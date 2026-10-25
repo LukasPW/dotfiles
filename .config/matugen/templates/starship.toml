@@ -1,7 +1,7 @@
 add_newline = false
 palette = "matugen"
 
-format = "$os$custom$username$hostname$directory$git_branch$git_status$status $character"
+format = "$os$custom$username$hostname$directory$git_branch$git_status$status$jobs$line_break$character"
 
 [palettes.matugen]
 primary      = "#{{colors.primary.default.hex_stripped}}"
