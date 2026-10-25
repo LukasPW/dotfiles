@@ -9,6 +9,10 @@ on_primary   = "#{{colors.on_primary.default.hex_stripped}}"
 secondary    = "#{{colors.secondary.default.hex_stripped}}"
 surface_tint = "#{{colors.surface_tint.default.hex_stripped}}"
 
+
+[line_break]
+disabled = false
+
 [username]
 show_always = false
 style_user = "primary"
@@ -56,6 +60,11 @@ command = "echo "
 when = true
 style = "primary"
 format = "[$output]($style) "
+
+[jobs]
+symbol = '* '
+number_threshold = 1
+symbol_threshold = 1
 
 [os.symbols]
 AlmaLinux   = "\uf31d"
