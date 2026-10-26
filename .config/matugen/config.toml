@@ -6,11 +6,11 @@ output_path = "~/.config/mango/colors.conf"
 [templates.hyprland]
 input_path = "~/.config/matugen/templates/hyprland-colors.lua"
 output_path = "~/.config/hypr/colors.lua"
-post_hook = "hyprctl reload"
+post_hook = 'hyprctl reload || true'
 [templates.sway]
 input_path = '~/.config/matugen/templates/sway-colors.conf'
 output_path = '~/.config/sway/colors.conf'
-post_hook = 'swaymsg reload'
+post_hook = 'swaymsg reload || true'
 [templates.niri]
 input_path = '~/.config/matugen/templates/niri-colors.kdl'
 output_path = '~/.config/niri/colors.kdl'
@@ -29,7 +29,7 @@ output_path = "~/.config/quickshell/Theme.qml"
 [templates.ghostty]
 input_path = "~/.config/matugen/templates/ghostty-colors"
 output_path = "~/.config/ghostty/colors"
-post_hook = 'pkill -USR2 ghostty'
+post_hook = 'pkill -USR2 ghostty || true'
 [templates.nvim]
 input_path = "~/.config/matugen/templates/nvim.lua"
 output_path = "~/.config/nvim/colors/matugen.lua"

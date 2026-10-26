@@ -260,7 +260,6 @@ WlrLayershell.keyboardFocus: active ? WlrKeyboardFocus.Exclusive : WlrKeyboardFo
         // a filename can't break the command. "wallpicker" fills $0.
         proc.command = ["bash", "-c", 'awww img "$1" && matugen image "$1" --source-color-index "$2" --mode dark' + reload, "wallpicker", path, String(index)];
         proc.running = true;
-        root.active = false;
     }
 
     Process {
@@ -269,11 +268,13 @@ WlrLayershell.keyboardFocus: active ? WlrKeyboardFocus.Exclusive : WlrKeyboardFo
             onStreamFinished: root.handleProbeOutput(this.text)
         }
     }
-
     Process {
         id: proc
+        onExited: (exitCode, exitStatus) => {
+            console.log("wallpicker exited:", exitCode)
+            root.active = false
+        }
     }
-
     IpcHandler {
         target: "wallpicker"
         function toggle(): void {

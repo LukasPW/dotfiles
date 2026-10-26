@@ -2,7 +2,7 @@ require("mini.base16").setup({
   palette = {
     base00 = "{{colors.on_secondary_fixed.default.hex}}",
     base01 = "{{colors.surface_container.default.hex}}",
-    base02 = "{{colors.on_primary_variant.default.hex}}",
+    base02 = "{{colors.primary_container.default.hex}}",
     base03 = "{{colors.outline.default.hex}}",
     base04 = "{{colors.on_surface_variant.default.hex}}",
     base05 = "{{colors.on_surface.default.hex}}",

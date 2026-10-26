@@ -1,7 +1,7 @@
 add_newline = false
 palette = "matugen"
 
-format = "$os$custom$username$hostname$directory$git_branch$git_status$status$jobs$line_break$character"
+format = "$os$custom$username$hostname$directory$git_branch$git_status$status$jobs $character"
 
 [palettes.matugen]
 primary      = "#{{colors.primary.default.hex_stripped}}"
@@ -27,8 +27,9 @@ format = "[@$hostname ]($style)"
 [directory]
 style = "primary"
 format = "[$path]($style)"
-truncation_length = 0
+truncation_length = 3
 truncate_to_repo = false
+truncation_symbol = '../'
 read_only = " \uf023"
 read_only_style = "red"
 
