@@ -18,8 +18,7 @@
     { "type": "custom", "format": "┏━━━━━━━ [ FASTFETCH ] ━━━━━━━┓", "outputColor": "magenta" },
     { "type": "title", "key": "HOST" },
     { "type": "datetime", "key": "DATE", "format": "{year}-{month-pretty}-{day-pretty} {hour-pretty}:{minute-pretty}Z" },
-    "break",
-
+    
     { "type": "custom", "format": "┣━━ [ SYSTEM ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "os",       "key": "OS" },
     { "type": "host",     "key": "HARDWARE" },
@@ -27,16 +26,14 @@
     { "type": "uptime",   "key": "UPTIME" },
     { "type": "packages", "key": "PACKAGES" },
     { "type": "shell",    "key": "SHELL" },
-    "break",
-
+    
     { "type": "custom", "format": "┣━━ [ GUI ] ━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "display",      "key": "DISPLAY" },
     { "type": "wm",           "key": "WM" },
     { "type": "icons",        "key": "ICONS" },
     { "type": "terminal",     "key": "TERMINAL" },
     { "type": "terminalfont", "key": "FONT" },
-    "break",
-
+    
     { "type": "custom", "format": "┣━━ [ HARDWARE ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "cpu",          "key": "CPU" },
     { "type": "gpu",          "key": "GPU" },
@@ -45,14 +42,12 @@
     { "type": "disk",         "key": "DISK" },
     { "type": "battery",      "key": "BATTERY" },
     { "type": "poweradapter", "key": "AC" },
-    "break",
-
+    
     { "type": "custom", "format": "┣━━ [ NETWORK ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "localip", "key": "IPv4" },
     { "type": "locale",  "key": "LOCALE" },
     { "type": "custom",  "format": "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛", "outputColor": "magenta" },
 
-    "break",
     { "type": "colors", "symbol": "triangle", "paddingLeft": 2 }
   ]
 }
