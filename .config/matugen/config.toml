@@ -33,7 +33,7 @@ post_hook = 'pkill -USR2 ghostty || true'
 [templates.nvim]
 input_path = "~/.config/matugen/templates/nvim.lua"
 output_path = "~/.config/nvim/colors/matugen.lua"
-post_hook = "pkill -USR1 nvim"
+post_hook = "pkill -USR1 nvim || true"
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi-colors.rasi'
 output_path = '~/.config/rofi/colors.rasi'

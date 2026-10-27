@@ -11,7 +11,7 @@ PanelWindow {
     property bool active: false
     visible: active
     //focusable: active
-WlrLayershell.keyboardFocus: active ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+    WlrLayershell.keyboardFocus: active ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
     // Two-step flow: pick a wallpaper, then - if matugen finds more than
     // one candidate source color - pick which one drives the scheme.
     // If there's only one candidate (or the probe fails, e.g. an older
@@ -159,6 +159,7 @@ WlrLayershell.keyboardFocus: active ? WlrKeyboardFocus.Exclusive : WlrKeyboardFo
             border.width: 3
             border.color: PathView.isCurrentItem ? Theme.primary : "transparent"
             scale: PathView.isCurrentItem ? carousel.currentScale : carousel.otherScale
+
             Behavior on scale {
                 NumberAnimation {
                     duration: 150
