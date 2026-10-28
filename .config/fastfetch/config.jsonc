@@ -15,11 +15,11 @@
     "key": { "width": 14 }
   },
   "modules": [
-    { "type": "custom", "format": "┏━━━━━━━ [ FASTFETCH ] ━━━━━━━┓", "outputColor": "magenta" },
+    { "type": "custom", "format": "┏━━━━━━━ [ FASTFETCH ] ━━━━━━━━━━━━━━━━━━━━━━━┓", "outputColor": "magenta" },
     { "type": "title", "key": "HOST" },
     { "type": "datetime", "key": "DATE", "format": "{year}-{month-pretty}-{day-pretty} {hour-pretty}:{minute-pretty}Z" },
     
-    { "type": "custom", "format": "┣━━ [ SYSTEM ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
+    { "type": "custom", "format": "┣━━ [ SYSTEM ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "os",       "key": "OS" },
     { "type": "host",     "key": "HARDWARE" },
     { "type": "kernel",   "key": "KERNEL" },
@@ -27,14 +27,14 @@
     { "type": "packages", "key": "PACKAGES" },
     { "type": "shell",    "key": "SHELL" },
     
-    { "type": "custom", "format": "┣━━ [ GUI ] ━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
+    { "type": "custom", "format": "┣━━ [ GUI ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "display",      "key": "DISPLAY" },
     { "type": "wm",           "key": "WM" },
     { "type": "icons",        "key": "ICONS" },
     { "type": "terminal",     "key": "TERMINAL" },
     { "type": "terminalfont", "key": "FONT" },
     
-    { "type": "custom", "format": "┣━━ [ HARDWARE ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
+    { "type": "custom", "format": "┣━━ [ HARDWARE ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "cpu",          "key": "CPU" },
     { "type": "gpu",          "key": "GPU" },
     { "type": "memory",       "key": "MEMORY", "percent": { "type": 3 } },
@@ -43,10 +43,10 @@
     { "type": "battery",      "key": "BATTERY" },
     { "type": "poweradapter", "key": "AC" },
     
-    { "type": "custom", "format": "┣━━ [ NETWORK ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
+    { "type": "custom", "format": "┣━━ [ NETWORK ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
     { "type": "localip", "key": "IPv4" },
     { "type": "locale",  "key": "LOCALE" },
-    { "type": "custom",  "format": "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛", "outputColor": "magenta" },
+    { "type": "custom",  "format": "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛", "outputColor": "magenta" },
 
     { "type": "colors", "symbol": "triangle", "paddingLeft": 2 }
   ]

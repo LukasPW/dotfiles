@@ -54,7 +54,6 @@ bindkey '^I' expand-or-complete
   source /usr/share/fzf/key-bindings.zsh
 [[ -f /usr/share/zsh/site-functions/zsh-autosuggestions.zsh ]] && \
   source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
-
 [[ -f /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh ]] && \
   source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 

@@ -20,13 +20,11 @@
         background = "00D3D3D3";
         foreground = "1A1A2E";   
       };
-
       interface = {
         brandingColor = "1A1A2E";  # title text at top
         helpColor = "333333";      # keybind hints
       };
   };
-
   boot.loader.limine.extraConfig = ''
     remember_last_entry: yes
 
