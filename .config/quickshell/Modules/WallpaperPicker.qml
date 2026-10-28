@@ -72,7 +72,7 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         color: Theme.surfaceContainer
-        border.width: 1
+        border.width: 2
         border.color: Theme.outline
     }
 
