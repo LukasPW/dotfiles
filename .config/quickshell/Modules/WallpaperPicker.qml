@@ -72,8 +72,8 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         color: Theme.surfaceContainer
-        border.width: 2
-        border.color: Theme.outline
+        border.width: 4
+        border.color: Theme.primary
     }
 
     PathView {
