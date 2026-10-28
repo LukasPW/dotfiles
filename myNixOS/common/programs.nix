@@ -88,6 +88,6 @@
   programs.nix-ld.enable = true;
   
   #Notifications
-  services.dunst.enable = true;
-  services.dunst.enableWayland = true;
+  #services.dunst.enable = true;
+  #services.dunst.enableWayland = true;
 }

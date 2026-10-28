@@ -56,6 +56,7 @@
     #QuickShell and related stuff
     quickshell
     kdePackages.qtdeclarative
+    libnotify
 
     # Wayland utilities
     grim

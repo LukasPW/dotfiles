@@ -12,8 +12,8 @@ QtObject {
     readonly property color outline: "{{colors.outline.default.hex}}"
     readonly property color surfaceContainer: "{{colors.surface_container.default.hex}}"
 
-    readonly property int radius: 12
-    readonly property string fontFamily: "sans-serif"
+    readonly property int radius: 0
+    readonly property string fontFamily: "Maple Mono NF CN"
     readonly property int fontSizeSmall: 14
     readonly property int fontSizeLarge: 20
 }

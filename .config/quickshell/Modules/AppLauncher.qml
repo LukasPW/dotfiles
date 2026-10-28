@@ -1,7 +1,6 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import QtCore
 import "../"
 
 Text {
@@ -11,8 +10,8 @@ Text {
     text: "\uf00b"
     color: Theme.secondary
     font {
-        family: "Maple Mono NF CN"
-        pixelSize: 15
+        family: Theme.fontFamily
+        pixelSize: Theme.fontSizeSmall
         weight: 400
     }
     Process {
