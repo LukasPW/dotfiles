@@ -123,7 +123,7 @@ Scope {
   PanelWindow {
     visible: root.centerOpen
     anchors { top: true; right:true }
-    margins { top: 14; right: 14}
+    margins { top: 43; right: 14}
 
     implicitWidth: 380
     implicitHeight: centerCol.implicitHeight + 24
