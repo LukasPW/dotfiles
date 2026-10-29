@@ -95,9 +95,9 @@ RowLayout {
             text: wsNum
             color: isActive ? Theme.primary : (populated ? Theme.secondary : Theme.outline)
             font {
-                pixelSize: 14
+                pixelSize: Theme.fontsizeSmall
                 bold: true
-                family: "Maple Mono NF CN"
+                family: Theme.fontFamily
             }
 
             MouseArea {

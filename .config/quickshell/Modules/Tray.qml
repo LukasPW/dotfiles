@@ -74,8 +74,8 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     font {
-                        family: "Maple Mono NF CN"
-                        pixelSize: 15
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSizeSmall
                         weight: 400
                     }
                 }
