@@ -1,53 +1,30 @@
 {
-  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "builtin",
-    "padding": { "top": 1, "right": 1 , "left" : 1}
+    "padding": { "top": 1, "left": 2, "right": 4 }
   },
   "display": {
-    "separator": " ▸ ",
-    "color": {
-      "keys": "magenta",
-      "title": "1;31",
-      "separator": "90",
-      "output": "37"
-    },
-    "key": { "width": 14 }
+    "separator": " ",
+    "key": { "width": 0 },
+    "percent": { "type": 3 }
   },
   "modules": [
-    { "type": "custom", "format": "┏━━━━━━━ [ FASTFETCH ] ━━━━━━━━━━━━━━━━━━━━━━━┓", "outputColor": "magenta" },
-    { "type": "title", "key": "HOST" },
-    { "type": "datetime", "key": "DATE", "format": "{year}-{month-pretty}-{day-pretty} {hour-pretty}:{minute-pretty}Z" },
-    
-    { "type": "custom", "format": "┣━━ [ SYSTEM ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
-    { "type": "os",       "key": "OS" },
-    { "type": "host",     "key": "HARDWARE" },
-    { "type": "kernel",   "key": "KERNEL" },
-    { "type": "uptime",   "key": "UPTIME" },
-    { "type": "packages", "key": "PACKAGES" },
-    { "type": "shell",    "key": "SHELL" },
-    
-    { "type": "custom", "format": "┣━━ [ GUI ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
-    { "type": "display",      "key": "DISPLAY" },
-    { "type": "wm",           "key": "WM" },
-    { "type": "icons",        "key": "ICONS" },
-    { "type": "terminal",     "key": "TERMINAL" },
-    { "type": "terminalfont", "key": "FONT" },
-    
-    { "type": "custom", "format": "┣━━ [ HARDWARE ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
-    { "type": "cpu",          "key": "CPU" },
-    { "type": "gpu",          "key": "GPU" },
-    { "type": "memory",       "key": "MEMORY", "percent": { "type": 3 } },
-    { "type": "swap",         "key": "SWAP" },
-    { "type": "disk",         "key": "DISK" },
-    { "type": "battery",      "key": "BATTERY" },
-    { "type": "poweradapter", "key": "AC" },
-    
-    { "type": "custom", "format": "┣━━ [ NETWORK ] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫", "outputColor": "magenta" },
-    { "type": "localip", "key": "IPv4" },
-    { "type": "locale",  "key": "LOCALE" },
-    { "type": "custom",  "format": "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛", "outputColor": "magenta" },
-
-    { "type": "colors", "symbol": "triangle", "paddingLeft": 2 }
+    "title",
+    { "type": "custom", "format": "{#keys}╭─ software ──────────────────────" },
+    { "type": "os",       "key": "{#keys}│ \uf30d os      " },
+    { "type": "kernel",   "key": "{#keys}│ \uf17c kernel  " },
+    { "type": "packages", "key": "{#keys}│ \uf187 pkgs    " },
+    { "type": "shell",    "key": "{#keys}│ \uf120 shell   " },
+    { "type": "wm",       "key": "{#keys}│ \uf2d0 wm      " },
+    { "type": "terminal", "key": "{#keys}│ \ue795 term    " },
+    { "type": "custom", "format": "{#keys}├─ hardware ──────────────────────" },
+    { "type": "cpu",      "key": "{#keys}│ \uf4bc cpu     " },
+    { "type": "gpu",      "key": "{#keys}│ \uf26c gpu     " },
+    { "type": "memory",   "key": "{#keys}│ \uefc5 memory  " },
+    { "type": "disk",     "key": "{#keys}│ \uf0a0 disk    " },
+    { "type": "uptime",   "key": "{#keys}│ \uf017 uptime  " },
+    { "type": "custom", "format": "{#keys}╰─────────────────────────────────" },
+    "break",
+    { "type": "colors", "symbol": "circle", "paddingLeft": 2 }
   ]
 }
