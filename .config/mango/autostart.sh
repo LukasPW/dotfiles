@@ -79,7 +79,6 @@ fi
 # ---------------------------------------------------------------------
 start "gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
 start "qs"
-start "dunst"
 start "GDK_BACKEND=wayland nm-applet --indicator" "nm-applet"
 start "easyeffects --gapplication-service"
 start "blueman-applet"

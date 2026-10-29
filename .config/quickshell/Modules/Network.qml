@@ -20,8 +20,8 @@ Text {
     text: wiredConnected ? "" : ""  // fa-sitemap (wired) / fa-wifi
     color: connected ? Theme.secondary : Theme.error
     font {
-        family: "Maple Mono NF CN"
-        pixelSize: 15
+        family: Theme.fontFamily
+        pixelSize: Theme.fontSizeSmall
         weight: 400
     }
 
