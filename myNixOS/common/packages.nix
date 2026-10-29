@@ -49,9 +49,12 @@
     hyprpicker
     hyprshot
 
-    #Niri Utils
+    #Niri Xwl support
+    xwayland-satellite
+
+    #WM utilities
     swaylock
-     xwayland-satellite
+    swayidle
 
     #QuickShell and related stuff
     quickshell

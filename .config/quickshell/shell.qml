@@ -55,6 +55,7 @@ ShellRoot {
                 anchors.left: parent.left
                 anchors.leftMargin: 8
                 anchors.verticalCenter: parent.verticalCenter
+                DistroIcon {}
                 Workspaces {}
                 IdleInhibitor {}
                 Brightness {}
