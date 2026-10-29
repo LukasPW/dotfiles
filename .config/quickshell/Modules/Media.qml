@@ -14,8 +14,8 @@ Text {
     visible: player !== null
     color: Theme.secondary
     font {
-        family: "Maple Mono NF CN"
-        pixelSize: 15
+        family: Theme.fontFamily
+        pixelSize: Theme.fontSizeSmall
         weight: 400
     }
     text: player ? (player.isPlaying ? "\uf04b " : "\uf04c  ") + player.trackTitle : ""
@@ -33,8 +33,8 @@ Text {
         color: Theme.secondary
         opacity: enabled ? 1 : 0.4
         font {
-            family: "Maple Mono NF CN"
-            pixelSize: 20
+            family: Theme.fontFamily
+            pixelSize: Theme.fontSizeLarge
         }
         MouseArea {
             anchors.fill: parent
@@ -83,8 +83,8 @@ Text {
                     color: Theme.secondary
                     elide: Text.ElideRight
                     font {
-                        family: "Maple Mono NF CN"
-                        pixelSize: 14
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSizeSmall
                         bold: true
                     }
                 }
@@ -95,8 +95,8 @@ Text {
                     color: Theme.tertiary
                     elide: Text.ElideRight
                     font {
-                        family: "Maple Mono NF CN"
-                        pixelSize: 13
+                        family: Theme.fontFamily
+                        pixelSize: Theme.fontSizeSmall
                     }
                 }
 
