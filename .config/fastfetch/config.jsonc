@@ -11,7 +11,7 @@
   "modules": [
     "title",
     { "type": "custom", "format": "{#keys}╭─ software ──────────────────────" },
-    { "type": "os",       "key": "{#keys}│ \uf30d os      " },
+    { "type": "os",       "key": "{#keys}│ \udb82\udcd6 os      " },
     { "type": "kernel",   "key": "{#keys}│ \uf17c kernel  " },
     { "type": "packages", "key": "{#keys}│ \uf187 pkgs    " },
     { "type": "shell",    "key": "{#keys}│ \uf120 shell   " },
