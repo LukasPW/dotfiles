@@ -8,6 +8,12 @@
   # kernelPackages
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+
+  # Fixes GTK2 dependencies in lutris and will soon throw errors again since GTK2 is being removed from nixpkgs
+  nixpkgs.config.problems.handlers = {
+    "gtk+".broken = "warn";
+  };
+
   # Time zone and localisation
   time.timeZone = "Europe/Stockholm";
   i18n.defaultLocale = "en_US.UTF-8";

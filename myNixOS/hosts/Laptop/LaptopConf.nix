@@ -73,9 +73,16 @@
   };
 
   #Virtualisation setup
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.swtpm.enable = true;
+  };
   programs.virt-manager.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;  # optional: pass USB devices into VMs
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "LukasPW" ];
+
+networking.firewall.trustedInterfaces = [ "virbr0" ];
 
   # Configure console keymap
   console.keyMap = "sv-latin1";
