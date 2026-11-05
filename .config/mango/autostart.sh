@@ -82,7 +82,7 @@ start "qs"
 start "GDK_BACKEND=wayland nm-applet --indicator" "nm-applet"
 start "easyeffects --gapplication-service"
 start "blueman-applet"
-start "swayidle -w timeout 300 'qs ipc call lock lock' before-sleep 'qs ipc call lock lock'" swayidle
+start "swayidle -w timeout 1200 'qs ipc call lock lock' before-sleep 'qs ipc call lock lock'" swayidle
 
 # Wallpaper: daemon first, restore after it has had a moment to start
 start "awww-daemon"
