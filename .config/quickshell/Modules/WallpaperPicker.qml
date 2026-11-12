@@ -175,7 +175,7 @@ PanelWindow {
         // StandardPaths asks Qt's platform integration for the user's
         // Pictures dir (reads $HOME / XDG user-dirs, not a fixed path).
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation) + "/wallpapers"
-        nameFilters: ["*.png", "*.jpg", "*.jpeg", "*.webp"]
+        nameFilters: ["*.png", "*.jpg", "*.jpeg", "*.webp", "*.JPG"]
         showDirs: false
     }
 
