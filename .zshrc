@@ -70,6 +70,10 @@ alias hermes='docker exec -it hermes-gateway hermes'
 fnrs() {
   sudo nixos-rebuild switch --flake ~/myNixOS/#"${1:-$(hostname)}"
 }
+
+alias poweroff='loginctl poweroff'
+alias reboot='loginctl reboot'
+
 #yazi setup
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
