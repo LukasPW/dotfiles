@@ -10,42 +10,42 @@
 
     # Recon / scanning
     nmap
-    masscan
-    gobuster
-    feroxbuster
-    seclists
+    #masscan
+    #gobuster
+    #feroxbuster
+    #seclists
 
     # Network analysis
     tcpdump
-    bettercap
-    socat
+    #bettercap
+    #socat
     netcat
     wireshark
 
     # SMB / Windows / AD enumeration
-    enum4linux
-    smbclient-ng
-    smbmap
-    netexec
+    #enum4linux
+    #smbclient-ng
+    #smbmap
+    #netexec
 
     # Web
-    burpsuite
-    sqlmap
+    #burpsuite
+    #sqlmap
 
     # Credential attacks
-    john
-    hashcat
-    hydra
+    #john
+    #hashcat
+    #hydra
 
     # OSINT
-    sherlock
-    holehe
+    #sherlock
+    #holehe
 
     # Remote access
-    freerdp
+    #freerdp
 
     # Exploit lookup
-    exploitdb
+    #exploitdb
 
     # General
     python3
