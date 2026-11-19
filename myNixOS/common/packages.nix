@@ -21,7 +21,6 @@
     google-chrome
 
     #Terminal Emulator
-    ghostty
     kitty
 
     # Terminal / CLI
@@ -34,11 +33,9 @@
     ncdu
     ripgrep
     ripgrep-all
-    zoxide
     aria2
     jq
     fetch
-    vis
 
     #3D Printing Utils
     orca-slicer
@@ -94,7 +91,6 @@
     obs-studio
     vlc
     mpv
-    godot
     lutris
     prismlauncher
     wine
@@ -104,15 +100,14 @@
     blender
     xarchiver
     tumbler
+    kdePackages.kdenlive
 
     #Fun
     pipes
-    ani-cli
 
     #Themes
     #catppuccin-cursors.mochaDark
     layan-cursors
-
 
     #Keyring
     gnome-keyring

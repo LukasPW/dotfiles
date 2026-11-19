@@ -8,6 +8,8 @@
   # kernelPackages
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Makes sure nix keeps a pam entry for my lock screen to work it can be found in /etc/pam.d/ on normal distros
+  security.pam.services.swaylock = {};
 
   # Fixes GTK2 dependencies in lutris and will soon throw errors again since GTK2 is being removed from nixpkgs
   nixpkgs.config.problems.handlers = {

@@ -41,6 +41,9 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia-container-toolkit.enable = true;
+  users.extraGroups.vboxusers.members = [ "LukasPW" ];
+
+  virtualisation.virtualbox.host.enable = true;
 
 	#Fixing Discord
 	environment.sessionVariables = {

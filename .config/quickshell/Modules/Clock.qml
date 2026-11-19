@@ -7,9 +7,9 @@ import "../"
 // on purpose since the lock screen has more room to work with.
 Text {
     color: Theme.secondary
-    text: Qt.formatDateTime(clock.date, "ddd-MM/dd-HH:mm")
+    text: Qt.formatDateTime(clock.date, "ddd-dd/MM-HH:mm")
     font {
-        family: "Maple Mono NF CN"
+        family: Theme.fontFamily
         letterSpacing: -1
         pixelSize: 15
         weight: 400
