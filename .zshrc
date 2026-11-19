@@ -73,6 +73,7 @@ fnrs() {
 
 alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'
+#feh /home/LukasPW/Pictures/wallpapers/NerdEmoji.jpg
 
 #yazi setup
 function y() {
