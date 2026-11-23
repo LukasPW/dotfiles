@@ -73,7 +73,7 @@ fnrs() {
 
 alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'
-
+#
 #yazi setup
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
