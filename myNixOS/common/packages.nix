@@ -36,6 +36,7 @@
     aria2
     jq
     fetch
+    tmux
 
     #3D Printing Utils
     orca-slicer
