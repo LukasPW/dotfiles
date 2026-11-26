@@ -82,3 +82,4 @@ function y() {
   [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
+#cowsay -f tux "Big Win for the Gentoo spin"
